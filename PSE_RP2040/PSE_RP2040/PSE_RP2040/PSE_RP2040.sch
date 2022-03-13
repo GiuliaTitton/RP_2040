@@ -1,0 +1,492 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 9700 750  0    50   ~ 0
+Memoria Flash
+$Comp
+L RP2040:RP2040 U1
+U 1 1 622DCBD6
+P 3550 4550
+F 0 "U1" H 4750 4937 60  0000 C CNN
+F 1 "RP2040" H 4750 4831 60  0000 C CNN
+F 2 "RP2040:RP2040" H 4750 4790 60  0001 C CNN
+F 3 "" H 3550 4550 60  0000 C CNN
+	1    3550 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 622DE161
+P 1700 6600
+F 0 "#PWR0101" H 1700 6350 50  0001 C CNN
+F 1 "GND" H 1705 6427 50  0000 C CNN
+F 2 "" H 1700 6600 50  0001 C CNN
+F 3 "" H 1700 6600 50  0001 C CNN
+	1    1700 6600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1700 6350 1700 6600
+$Comp
+L AT25SF128A-SHB-T:AT25SF128A-SHB-T IC1
+U 1 1 622DEAB6
+P 9100 1700
+F 0 "IC1" H 10000 1965 50  0000 C CNN
+F 1 "AT25SF128A-SHB-T" H 10000 1874 50  0000 C CNN
+F 2 "AT25SF128A-SHB-T:SOIC127P790X216-8N" H 10750 1800 50  0001 L CNN
+F 3 "https://datasheet.datasheetarchive.com/originals/distributors/Datasheets_SAMA/8feb0937f5fd325e86611eb27aef6c37.pdf" H 10750 1700 50  0001 L CNN
+F 4 "NOR Flash 128Mb, 133MHz, 8-SOIC-W, IND TEMP, 2.7-3.6V, T&R" H 10750 1600 50  0001 L CNN "Description"
+F 5 "2.16" H 10750 1500 50  0001 L CNN "Height"
+F 6 "Adesto Technologies" H 10750 1400 50  0001 L CNN "Manufacturer_Name"
+F 7 "AT25SF128A-SHB-T" H 10750 1300 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "988-AT25SF128A-SHB-T" H 10750 1200 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/Adesto-Technologies/AT25SF128A-SHB-T?qs=l4Gc20tDgJIeOSQSIcY3VA%3D%3D" H 10750 1100 50  0001 L CNN "Mouser Price/Stock"
+F 10 "" H 10750 1000 50  0001 L CNN "Arrow Part Number"
+F 11 "" H 10750 900 50  0001 L CNN "Arrow Price/Stock"
+	1    9100 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 622DFD8E
+P 9050 2050
+F 0 "#PWR0102" H 9050 1800 50  0001 C CNN
+F 1 "GND" H 9055 1877 50  0000 C CNN
+F 2 "" H 9050 2050 50  0001 C CNN
+F 3 "" H 9050 2050 50  0001 C CNN
+	1    9050 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 622E11EA
+P 11450 1350
+F 0 "C1" H 11565 1396 50  0000 L CNN
+F 1 "100n" H 11565 1305 50  0000 L CNN
+F 2 "" H 11488 1200 50  0001 C CNN
+F 3 "~" H 11450 1350 50  0001 C CNN
+	1    11450 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622E212D
+P 11450 1550
+F 0 "#PWR?" H 11450 1300 50  0001 C CNN
+F 1 "GND" H 11455 1377 50  0000 C CNN
+F 2 "" H 11450 1550 50  0001 C CNN
+F 3 "" H 11450 1550 50  0001 C CNN
+	1    11450 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11050 1700 10900 1700
+Wire Wire Line
+	11450 1200 11450 1150
+Wire Wire Line
+	11450 1150 11050 1150
+Wire Wire Line
+	11050 1150 11050 1700
+Wire Wire Line
+	11450 1550 11450 1500
+$Comp
+L Device:R R?
+U 1 1 622E2C73
+P 8900 1250
+F 0 "R?" H 8970 1296 50  0000 L CNN
+F 1 "10k" H 8970 1205 50  0000 L CNN
+F 2 "" V 8830 1250 50  0001 C CNN
+F 3 "~" H 8900 1250 50  0001 C CNN
+	1    8900 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 622E328E
+P 8300 1700
+F 0 "R?" V 8093 1700 50  0000 C CNN
+F 1 "1k" V 8184 1700 50  0000 C CNN
+F 2 "" V 8230 1700 50  0001 C CNN
+F 3 "~" H 8300 1700 50  0001 C CNN
+	1    8300 1700
+	0    1    1    0   
+$EndComp
+Connection ~ 11050 1150
+$Comp
+L power:+3V3 #PWR0103
+U 1 1 622E02EE
+P 11050 850
+F 0 "#PWR0103" H 11050 700 50  0001 C CNN
+F 1 "+3V3" H 11065 1023 50  0000 C CNN
+F 2 "" H 11050 850 50  0001 C CNN
+F 3 "" H 11050 850 50  0001 C CNN
+	1    11050 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11050 850  11050 900 
+Wire Wire Line
+	11050 900  8900 900 
+Wire Wire Line
+	8900 900  8900 1100
+Connection ~ 11050 900 
+Wire Wire Line
+	11050 900  11050 1150
+Wire Wire Line
+	9100 1700 8900 1700
+Wire Wire Line
+	8900 1400 8900 1700
+Wire Wire Line
+	9050 2050 9050 2000
+Wire Wire Line
+	9050 2000 9100 2000
+Text Notes 9100 1250 0    28   ~ 0
+pull-up resistor
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 622E5C89
+P 7800 1700
+F 0 "J?" H 7718 1917 50  0000 C CNN
+F 1 "Conn_01x02" H 7718 1826 50  0000 C CNN
+F 2 "" H 7800 1700 50  0001 C CNN
+F 3 "~" H 7800 1700 50  0001 C CNN
+	1    7800 1700
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622E6975
+P 8150 1850
+F 0 "#PWR?" H 8150 1600 50  0001 C CNN
+F 1 "GND" H 8155 1677 50  0000 C CNN
+F 2 "" H 8150 1850 50  0001 C CNN
+F 3 "" H 8150 1850 50  0001 C CNN
+	1    8150 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8000 1700 8150 1700
+Wire Wire Line
+	8000 1800 8150 1800
+Wire Wire Line
+	8150 1800 8150 1850
+Wire Wire Line
+	10900 1900 11250 1900
+Text Label 11000 1900 0    50   ~ 0
+SCK
+Text Label 10900 2000 0    50   ~ 0
+SERIAL_INPUT
+Wire Wire Line
+	10900 2000 11450 2000
+Connection ~ 8900 1700
+Text Label 8550 1800 0    50   ~ 0
+SERIAL_OUTPUT
+Wire Wire Line
+	8900 1700 8450 1700
+Wire Wire Line
+	8550 1800 9100 1800
+Wire Wire Line
+	9100 1900 8550 1900
+Text Label 8550 1900 0    50   ~ 0
+WRITE_PROTECT
+Wire Wire Line
+	10900 1800 11400 1800
+Text Label 10950 1800 0    50   ~ 0
+HOLD
+$Comp
+L PSE_RP2040-rescue:ABLS-12.000MHZ-B4-T-ABLS-12.000MHZ-B4-T_crystal F?
+U 1 1 622EB81D
+P 2050 6950
+F 0 "F?" H 2400 7175 50  0000 C CNN
+F 1 "ABLS-12.000MHZ-B4-T" H 2400 7084 50  0000 C CNN
+F 2 "HC/49US-(AT49)_1" H 2600 7000 50  0001 L CNN
+F 3 "https://componentsearchengine.com/Datasheets/2/ABLS-12.000MHZ-B4-T.pdf" H 2600 6900 50  0001 L CNN
+F 4 "ABRACON - ABLS-12.000MHZ-B4-T - CRYSTAL, 12MHZ, 18PF, HC-49US" H 2600 6800 50  0001 L CNN "Description"
+F 5 "" H 2600 6700 50  0001 L CNN "Height"
+F 6 "ABRACON" H 2600 6600 50  0001 L CNN "Manufacturer_Name"
+F 7 "ABLS-12.000MHZ-B4-T" H 2600 6500 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "815-ABLS-12.0M-T" H 2600 6400 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/ABRACON/ABLS-12000MHZ-B4-T?qs=yTU0IcKoRlGSQ8ooxPPVnQ%3D%3D" H 2600 6300 50  0001 L CNN "Mouser Price/Stock"
+F 10 "ABLS-12.000MHZ-B4-T" H 2600 6200 50  0001 L CNN "Arrow Part Number"
+F 11 "https://www.arrow.com/en/products/abls-12.000mhz-b4-t/abracon?region=nac" H 2600 6100 50  0001 L CNN "Arrow Price/Stock"
+	1    2050 6950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 622ECF54
+P 2000 7250
+F 0 "C?" H 2115 7296 50  0000 L CNN
+F 1 "27p" H 2115 7205 50  0000 L CNN
+F 2 "" H 2038 7100 50  0001 C CNN
+F 3 "~" H 2000 7250 50  0001 C CNN
+	1    2000 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 622EDDB4
+P 2900 7250
+F 0 "C?" H 3015 7296 50  0000 L CNN
+F 1 "27p" H 3015 7205 50  0000 L CNN
+F 2 "" H 2938 7100 50  0001 C CNN
+F 3 "~" H 2900 7250 50  0001 C CNN
+	1    2900 7250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622EE357
+P 2500 7450
+F 0 "#PWR?" H 2500 7200 50  0001 C CNN
+F 1 "GND" H 2505 7277 50  0000 C CNN
+F 2 "" H 2500 7450 50  0001 C CNN
+F 3 "" H 2500 7450 50  0001 C CNN
+	1    2500 7450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2050 6950 2000 6950
+Wire Wire Line
+	2000 6950 2000 7100
+Wire Wire Line
+	2750 6950 2900 6950
+Wire Wire Line
+	2900 6950 2900 7100
+Wire Wire Line
+	2000 7400 2000 7450
+Wire Wire Line
+	2000 7450 2500 7450
+Wire Wire Line
+	2500 7450 2900 7450
+Wire Wire Line
+	2900 7450 2900 7400
+Connection ~ 2500 7450
+Wire Wire Line
+	2000 6950 2000 6450
+Connection ~ 2000 6950
+Wire Wire Line
+	2900 6550 2900 6950
+Connection ~ 2900 6950
+$Comp
+L Device:R R?
+U 1 1 622F176C
+P 3200 6550
+F 0 "R?" V 2993 6550 50  0000 C CNN
+F 1 "1k" V 3084 6550 50  0000 C CNN
+F 2 "" V 3130 6550 50  0001 C CNN
+F 3 "~" H 3200 6550 50  0001 C CNN
+	1    3200 6550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2900 6550 3050 6550
+Wire Wire Line
+	3350 6550 3550 6550
+Wire Wire Line
+	2000 6450 3550 6450
+Wire Wire Line
+	3550 6350 1700 6350
+Text Notes 650  650  0    50   ~ 0
+USB
+$Comp
+L Connector:USB_B J?
+U 1 1 622DED3D
+P 1050 1450
+F 0 "J?" H 1107 1917 50  0000 C CNN
+F 1 "USB_B" H 1107 1826 50  0000 C CNN
+F 2 "" H 1200 1400 50  0001 C CNN
+F 3 " ~" H 1200 1400 50  0001 C CNN
+	1    1050 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622DF55E
+P 1000 2000
+F 0 "#PWR?" H 1000 1750 50  0001 C CNN
+F 1 "GND" H 1005 1827 50  0000 C CNN
+F 2 "" H 1000 2000 50  0001 C CNN
+F 3 "" H 1000 2000 50  0001 C CNN
+	1    1000 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	950  1850 950  2000
+Wire Wire Line
+	950  2000 1000 2000
+Wire Wire Line
+	1050 2000 1050 1850
+Connection ~ 1000 2000
+Wire Wire Line
+	1000 2000 1050 2000
+Wire Wire Line
+	1350 1450 1600 1450
+Wire Wire Line
+	1350 1550 1600 1550
+Text Label 1350 1450 0    50   ~ 0
+USB_DP
+Text Label 1350 1550 0    50   ~ 0
+USB_DN
+$Comp
+L Device:L L?
+U 1 1 622E2C3C
+P 1750 1250
+F 0 "L?" V 1569 1250 50  0000 C CNN
+F 1 "200mA 120Ohm" V 1660 1250 50  0000 C CNN
+F 2 "" H 1750 1250 50  0001 C CNN
+F 3 "~" H 1750 1250 50  0001 C CNN
+	1    1750 1250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 622E3945
+P 2150 1500
+F 0 "C?" H 2265 1546 50  0000 L CNN
+F 1 "100n" H 2265 1455 50  0000 L CNN
+F 2 "" H 2188 1350 50  0001 C CNN
+F 3 "~" H 2150 1500 50  0001 C CNN
+	1    2150 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 622E43C0
+P 2600 950
+F 0 "#PWR?" H 2600 800 50  0001 C CNN
+F 1 "+5V" H 2615 1123 50  0000 C CNN
+F 2 "" H 2600 950 50  0001 C CNN
+F 3 "" H 2600 950 50  0001 C CNN
+	1    2600 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1350 1250 1600 1250
+Wire Wire Line
+	1900 1250 2150 1250
+Wire Wire Line
+	2150 1250 2150 1350
+Wire Wire Line
+	2150 1250 2600 1250
+Wire Wire Line
+	2600 1250 2600 1350
+Connection ~ 2150 1250
+Wire Wire Line
+	2600 1250 2600 950 
+Connection ~ 2600 1250
+$Comp
+L power:GND #PWR?
+U 1 1 622E8440
+P 2150 1650
+F 0 "#PWR?" H 2150 1400 50  0001 C CNN
+F 1 "GND" H 2155 1477 50  0000 C CNN
+F 2 "" H 2150 1650 50  0001 C CNN
+F 3 "" H 2150 1650 50  0001 C CNN
+	1    2150 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 622E952F
+P 2600 1650
+F 0 "#PWR?" H 2600 1400 50  0001 C CNN
+F 1 "GND" H 2605 1477 50  0000 C CNN
+F 2 "" H 2600 1650 50  0001 C CNN
+F 3 "" H 2600 1650 50  0001 C CNN
+	1    2600 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C?
+U 1 1 622EB629
+P 2600 1500
+F 0 "C?" H 2718 1546 50  0000 L CNN
+F 1 "10u 16V" H 2718 1455 50  0000 L CNN
+F 2 "" H 2638 1350 50  0001 C CNN
+F 3 "~" H 2600 1500 50  0001 C CNN
+	1    2600 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:USB_B_Micro J?
+U 1 1 622ECACC
+P 1050 2800
+F 0 "J?" H 1107 3267 50  0000 C CNN
+F 1 "USB_B_Micro" H 1107 3176 50  0000 C CNN
+F 2 "" H 1200 2750 50  0001 C CNN
+F 3 "~" H 1200 2750 50  0001 C CNN
+	1    1050 2800
+	1    0    0    -1  
+$EndComp
+Text Label 1350 1250 0    50   ~ 0
+VUSB
+Wire Wire Line
+	1350 2600 1600 2600
+Wire Wire Line
+	1350 2800 1600 2800
+Wire Wire Line
+	1350 2900 1600 2900
+Wire Wire Line
+	1350 3000 1600 3000
+NoConn ~ 1600 3000
+Text Label 1350 2600 0    50   ~ 0
+VUSB
+Text Label 1350 2800 0    50   ~ 0
+USB_DP
+Text Label 1350 2900 0    50   ~ 0
+USB_DN
+$Comp
+L power:GND #PWR?
+U 1 1 622F4459
+P 1000 3350
+F 0 "#PWR?" H 1000 3100 50  0001 C CNN
+F 1 "GND" H 1005 3177 50  0000 C CNN
+F 2 "" H 1000 3350 50  0001 C CNN
+F 3 "" H 1000 3350 50  0001 C CNN
+	1    1000 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	950  3200 950  3350
+Wire Wire Line
+	950  3350 1000 3350
+Wire Wire Line
+	1050 3200 1050 3350
+Wire Wire Line
+	1050 3350 1000 3350
+Connection ~ 1000 3350
+$Comp
+L SAM-M8Q-0:SAM-M8Q-0 IC?
+U 1 1 622F7642
+P 13250 4050
+F 0 "IC?" H 14694 3846 50  0000 L CNN
+F 1 "SAM-M8Q-0" H 14694 3755 50  0000 L CNN
+F 2 "SAMM8Q0" H 14500 4650 50  0001 L CNN
+F 3 "https://www.u-blox.com/sites/default/files/SAM-M8Q_DataSheet_%28UBX-16012619%29.pdf" H 14500 4550 50  0001 L CNN
+F 4 "SAM-M8Q RF Receiver Galileo, GLONASS, GPS 1.575GHz, 1.602GHz -165dBm 400kbps" H 14500 4450 50  0001 L CNN "Description"
+F 5 "6.8" H 14500 4350 50  0001 L CNN "Height"
+F 6 "U-Blox" H 14500 4250 50  0001 L CNN "Manufacturer_Name"
+F 7 "SAM-M8Q-0" H 14500 4150 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "377-SAM-M8Q-0" H 14500 4050 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/u-blox/SAM-M8Q-0?qs=CiayqK2gdcLaPdm%2FncwuKw%3D%3D" H 14500 3950 50  0001 L CNN "Mouser Price/Stock"
+F 10 "" H 14500 3850 50  0001 L CNN "Arrow Part Number"
+F 11 "" H 14500 3750 50  0001 L CNN "Arrow Price/Stock"
+	1    13250 4050
+	1    0    0    -1  
+$EndComp
+Text Notes 14950 2500 0    50   ~ 0
+GPS
+$EndSCHEMATC

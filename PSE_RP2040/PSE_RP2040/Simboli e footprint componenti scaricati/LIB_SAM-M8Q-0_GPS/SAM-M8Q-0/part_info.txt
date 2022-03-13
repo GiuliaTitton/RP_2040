@@ -1,0 +1,9 @@
+Manufacturer=U-Blox
+PartNumber=SAM-M8Q-0
+PartCategory=Integrated Circuit
+PackageCategory=Other
+PinCount=20
+Version=1.4
+Released=2021-06-02 10:50:53
+Downloaded=2022-03-13 12:34:20
+3D=Y

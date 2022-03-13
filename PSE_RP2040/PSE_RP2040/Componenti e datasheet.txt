@@ -1,0 +1,30 @@
+MEMORIA FLASH
+1)
+-nome: W25Q128JVS 
+-datasheet: https://www.digikey.com/en/datasheets/winbond-electronics/winbond-electronicsw25q128jv20spi20revc2011162016
+-alimentazione: 2.7 to 3.6V
+-package: SO8/WSO8
+-pin: 8
+-note: il simbolo/footprint del componente non si trova già pronto, bisogna crearlo
+2)
+-nome: AT25SF128A
+-datasheet: https://www.mouser.it/datasheet/2/590/adesto_technologies_adet-s-a0007947218-1-1764155.pdf
+-package: SO8
+-pin: 8
+-note: schematico e footprint scaricato da https://componentsearchengine.com/part-view/AT25SF128A-SHB-T/Adesto%20Technologies (ho usato questo)
+
+QUARZO
+-nome: ABLS-12.000MHZ-B4-T
+-frequenza: 12MHz
+-tolleranza: 30ppm
+-equivalente di Resistenza in Serie (ESR): 50 Ohm (un resistore in serie da 1kΩ su XOUT previene che il cristallo sia danneggiato). NB: se si 
+cambia il cristallo bisogna ricalcolare la resistenza in serie.
+-capacità di carico: 18pF
+-condensatori: 27pF (la serie darebbe 13.5pF. Assumendo capacità parassite di 5pF che si sommano alla serie otteniamo 18.5pF che corrisponde
+circa alla capacità di carico)
+
+CONNETTORE USB
+1) USB_B
+2) USB_B_MICRO
+
+MODULO GPS

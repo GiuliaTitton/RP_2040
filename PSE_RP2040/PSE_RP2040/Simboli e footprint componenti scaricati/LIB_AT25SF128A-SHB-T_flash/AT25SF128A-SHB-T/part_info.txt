@@ -1,0 +1,9 @@
+Manufacturer=Adesto Technologies
+PartNumber=AT25SF128A-SHB-T
+PartCategory=Integrated Circuit
+PackageCategory=Small Outline Packages
+PinCount=8
+Version=1.1
+Released=2019-06-26 10:57:24
+Downloaded=2022-03-12 18:20:30
+3D=Y
