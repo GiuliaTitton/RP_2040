@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:PSE_RP2040-cache
 EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
@@ -200,30 +199,11 @@ QSPI_SD2
 Text Label 15700 1800 2    50   ~ 0
 QSPI_SD3
 $Comp
-L PSE_RP2040-rescue:ABLS-12.000MHZ-B4-T-ABLS-12.000MHZ-B4-T_crystal F1
-U 1 1 622EB81D
-P 4100 3550
-F 0 "F1" H 4450 3775 50  0000 C CNN
-F 1 "ABLS-12.000MHZ-B4-T" H 4450 3684 50  0000 C CNN
-F 2 "HC/49US-(AT49)_1" H 4650 3600 50  0001 L CNN
-F 3 "https://componentsearchengine.com/Datasheets/2/ABLS-12.000MHZ-B4-T.pdf" H 4650 3500 50  0001 L CNN
-F 4 "ABRACON - ABLS-12.000MHZ-B4-T - CRYSTAL, 12MHZ, 18PF, HC-49US" H 4650 3400 50  0001 L CNN "Description"
-F 5 "" H 4650 3300 50  0001 L CNN "Height"
-F 6 "ABRACON" H 4650 3200 50  0001 L CNN "Manufacturer_Name"
-F 7 "ABLS-12.000MHZ-B4-T" H 4650 3100 50  0001 L CNN "Manufacturer_Part_Number"
-F 8 "815-ABLS-12.0M-T" H 4650 3000 50  0001 L CNN "Mouser Part Number"
-F 9 "https://www.mouser.co.uk/ProductDetail/ABRACON/ABLS-12000MHZ-B4-T?qs=yTU0IcKoRlGSQ8ooxPPVnQ%3D%3D" H 4650 2900 50  0001 L CNN "Mouser Price/Stock"
-F 10 "ABLS-12.000MHZ-B4-T" H 4650 2800 50  0001 L CNN "Arrow Part Number"
-F 11 "https://www.arrow.com/en/products/abls-12.000mhz-b4-t/abracon?region=nac" H 4650 2700 50  0001 L CNN "Arrow Price/Stock"
-	1    4100 3550
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C2
 U 1 1 622ECF54
 P 4050 3850
 F 0 "C2" H 4165 3896 50  0000 L CNN
-F 1 "27p" H 4165 3805 50  0000 L CNN
+F 1 "?" H 4165 3805 50  0000 L CNN
 F 2 "" H 4088 3700 50  0001 C CNN
 F 3 "~" H 4050 3850 50  0001 C CNN
 	1    4050 3850
@@ -234,7 +214,7 @@ L Device:C C5
 U 1 1 622EDDB4
 P 4950 3850
 F 0 "C5" H 5065 3896 50  0000 L CNN
-F 1 "27p" H 5065 3805 50  0000 L CNN
+F 1 "?" H 5065 3805 50  0000 L CNN
 F 2 "" H 4988 3700 50  0001 C CNN
 F 3 "~" H 4950 3850 50  0001 C CNN
 	1    4950 3850
@@ -252,17 +232,13 @@ F 3 "" H 4550 4050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4100 3550 4050 3550
-Wire Wire Line
 	4050 3550 4050 3700
-Wire Wire Line
-	4800 3550 4950 3550
 Wire Wire Line
 	4950 3550 4950 3700
 Wire Wire Line
 	4050 4000 4050 4050
 Wire Wire Line
-	4050 4050 4550 4050
+	4050 4050 4450 4050
 Wire Wire Line
 	4550 4050 4950 4050
 Wire Wire Line
@@ -509,7 +485,7 @@ F 3 "~" H 12100 3150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Flash_memory:W25Q16JVUXIQ U?
+L PSE_RP2040-rescue:W25Q16JVUXIQ-Flash_memory U?
 U 1 1 62321CDF
 P 13450 3200
 F 0 "U?" H 13600 3715 50  0000 C CNN
@@ -1069,7 +1045,7 @@ PPS
 Wire Wire Line
 	14150 7750 14150 7900
 $Comp
-L gpsChip:PAM7Q U?
+L PSE_RP2040-rescue:PAM7Q-gpsChip U?
 U 1 1 62557D93
 P 14450 9250
 F 0 "U?" V 15000 9550 50  0000 C CNN
@@ -1668,7 +1644,7 @@ $EndComp
 Text Label 11150 5800 3    50   ~ 0
 GPIO25
 $Comp
-L buck_converter:RT6150A_B U?
+L PSE_RP2040-rescue:RT6150A_B-buck_converter U?
 U 1 1 62858E49
 P 2200 8850
 F 0 "U?" H 2350 8327 50  0000 C CNN
@@ -1902,4 +1878,27 @@ Text Notes 3700 600  0    50   ~ 0
 Microcontrollore\n
 Wire Notes Line
 	500  4500 16050 4500
+$Comp
+L Device:Crystal_GND24 Y?
+U 1 1 6234C592
+P 4450 3550
+F 0 "Y?" H 4644 3596 50  0000 L CNN
+F 1 "Crystal_GND24" H 4644 3505 50  0000 L CNN
+F 2 "" H 4450 3550 50  0001 C CNN
+F 3 "~" H 4450 3550 50  0001 C CNN
+	1    4450 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 3550 4950 3550
+Wire Wire Line
+	4050 3550 4300 3550
+Wire Wire Line
+	4450 3350 4450 3750
+Wire Wire Line
+	4450 3750 4450 4050
+Connection ~ 4450 3750
+Connection ~ 4450 4050
+Wire Wire Line
+	4450 4050 4550 4050
 $EndSCHEMATC
