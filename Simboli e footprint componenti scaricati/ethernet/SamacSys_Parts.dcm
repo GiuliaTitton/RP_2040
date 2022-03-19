@@ -1,0 +1,33 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NE555DR
+D Single Precision Timer
+K
+F http://www.ti.com/lit/ds/symlink/ne555.pdf
+$ENDCMP
+#
+$CMP LAN8742A-CZ
+D Microchip LAN8742A-CZ Ethernet Transceiver, IEEE 802.3, IEEE 802.3u, 10 Mbps, 100 Mbps 1.62  3.6 V, 24-Pin SQFN
+K
+F http://ww1.microchip.com/downloads/en/DeviceDoc/8742a.pdf
+$ENDCMP
+#
+$CMP 749013011
+D LAN-Transformer WE-LAN 10/100 Base Tx
+K
+F https://www.we-online.de/katalog/datasheet/749013011.pdf
+$ENDCMP
+#
+$CMP RJHSE-5085
+D AMPHENOL COMMERCIAL PRODUCTS - RJHSE-5085 - JACK, RJ45, W/LED, 1PORT
+K
+F https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/rjhse508x.pdf
+$ENDCMP
+#
+$CMP RJHSE-5385
+D Modular Connectors / Ethernet Connectors R/A RJ45 SHEILDED 8 CONT G/G LEDS
+K
+F https://datasheet.datasheetarchive.com/originals/distributors/Datasheets-DGA5/407895.pdf
+$ENDCMP
+#
+#End Doc Library
