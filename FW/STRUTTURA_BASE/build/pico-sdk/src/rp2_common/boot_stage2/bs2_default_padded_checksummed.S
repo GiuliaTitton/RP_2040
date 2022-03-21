@@ -1,4 +1,4 @@
-// Padded and checksummed version of: D:/WORKSPACE/RASPBERRY_PICO/PROGETTI/test_prj_folder/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: /Users/matteo/Documents/GitHub/RP_2040/FW/STRUTTURA_BASE/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb
