@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
 
+
+#message("/********/  MODIFICARE IL PERCORSO DI PICO_SDK_PATH IN FILE CMAKELISTSTXT CON IL PROPRIO PERCORSO  /******/")
+
+set(PICO_SDK_PATH D:/WORKSPACE/RASPBERRY_PICO/LIBRERIE/pico-sdk)#MODIFICARE QUESTO PERCORSO CON CARTELLA pico-sdk
 # Pull in SDK (must be before project)
+
 include(pico_sdk_import.cmake)
 #todo: PICO_SDK_FETCH_FROM_GIT set to true to pull from git??? (ANDREA)
 # initialize pico-sdk from GIT
@@ -49,7 +54,6 @@ add_executable(test_prj_folder
 # pull in common dependencies
 target_link_libraries(test_prj_folder pico_stdlib)
 
-#inclusione cartella file header
 target_include_directories (test_prj_folder PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 # create map/bin/hex file etc.
