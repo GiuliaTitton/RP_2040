@@ -12,11 +12,11 @@ include(pico_sdk_import.cmake)
 # (note this can come from environment, CMake cache etc)
 #set(PICO_SDK_FETCH_FROM_GIT on)
 
+set (PROJECT_NAME test1)
 
 
 
-
-project(test_prj_folder C CXX ASM)
+project(${PROJECT_NAME} C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
@@ -29,10 +29,6 @@ set(MYPROJECT_PATH ${PROJECT_SOURCE_DIR})
 # Initialize the SDK
 pico_sdk_init()
 
-#include(example_auto_set_url.cmake)
-
-# Add blink example
-#add_subdirectory(test_prj_folder)
 
 
 add_compile_options(-Wall
@@ -42,22 +38,18 @@ add_compile_options(-Wall
         )
 
 
-
-
-
-
-add_executable(test_prj_folder
+add_executable(${PROJECT_NAME}
         main.c
 	src/file.c
         )
 
 # pull in common dependencies
-target_link_libraries(test_prj_folder pico_stdlib)
+target_link_libraries(${PROJECT_NAME} pico_stdlib)
 
-target_include_directories (test_prj_folder PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+target_include_directories (${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
 # create map/bin/hex file etc.
-pico_add_extra_outputs(test_prj_folder)
+pico_add_extra_outputs(${PROJECT_NAME})
 
 # add url via pico_set_program_url
 #example_auto_set_url(test_prj_folder)
