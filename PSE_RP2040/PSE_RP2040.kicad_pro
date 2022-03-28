@@ -323,6 +323,10 @@
     [
       "cfa038c0-a49f-45bf-b6e3-72692695ea2c",
       "Alimentazioni"
+    ],
+    [
+      "fcbec5fb-5634-49d7-ab3e-008c50bb3423",
+      "LAN"
     ]
   ],
   "text_variables": {}
