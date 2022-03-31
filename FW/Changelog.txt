@@ -1,4 +1,6 @@
 20220321: 
 	aggiunto progetto con struttura base per la programmazione fw: permette inclusione di header e implementazione (*.c)
 	pico-sdk non va modificata
+	
+20220331:
 	pico rmii-ethernet esempio da repository sandeep mistry
