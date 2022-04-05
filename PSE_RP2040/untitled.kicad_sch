@@ -1642,7 +1642,7 @@
     (property "Value" "TPS2375-1" (id 1) (at 83.2994 82.6571 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (id 2) (at 81.28 111.76 0)
+    (property "Footprint" "Package_SO:SOIC-8_5.275x5.275mm_P1.27mm" (id 2) (at 81.28 111.76 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://www.ti.com/lit/gpn/tps2375-1" (id 3) (at 81.28 71.12 0)
