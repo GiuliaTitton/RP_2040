@@ -373,6 +373,26 @@
       },
       {
         "bus_width": 12.0,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.2032,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.254,
+        "line_style": 0,
+        "microvia_diameter": 0.508,
+        "microvia_drill": 0.2032,
+        "name": "POE+",
+        "nets": [
+          "poe+"
+        ],
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.508,
+        "via_diameter": 0.762,
+        "via_drill": 0.381,
+        "wire_width": 6.0
+      },
+      {
+        "bus_width": 12.0,
         "clearance": 0.2032,
         "diff_pair_gap": 0.2032,
         "diff_pair_via_gap": 0.25,
@@ -384,6 +404,26 @@
         "nets": [
           "+3V3",
           "+5V"
+        ],
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.508,
+        "via_diameter": 0.762,
+        "via_drill": 0.381,
+        "wire_width": 6.0
+      },
+      {
+        "bus_width": 12.0,
+        "clearance": 0.2032,
+        "diff_pair_gap": 0.2032,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.254,
+        "line_style": 0,
+        "microvia_diameter": 0.508,
+        "microvia_drill": 0.2032,
+        "name": "VUSB",
+        "nets": [
+          "/VUSB"
         ],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
