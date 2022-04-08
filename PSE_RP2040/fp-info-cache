@@ -1,4 +1,4 @@
-20169170519669953
+20170819830623440
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -61212,7 +61212,7 @@ RP2040-QFN-56
 QFN, 56 Pin (http://www.cypress.com/file/416486/download#page=40), generated with kicad-footprint-generator ipc_dfn_qfn_generator.py
 QFN DFN_QFN
 0
-66
+61
 57
 PSE2021
 RPi_Pico_SMD_TH
@@ -85700,3 +85700,10 @@ varistor SIOV
 0
 2
 2
+footprints
+RP2040
+
+
+0
+57
+57
