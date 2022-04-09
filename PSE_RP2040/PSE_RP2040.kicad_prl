@@ -63,7 +63,7 @@
       36
     ],
     "visible_layers": "7fdfe7f_80000001",
-    "zone_display_mode": 0
+    "zone_display_mode": 1
   },
   "meta": {
     "filename": "PSE_RP2040.kicad_prl",
