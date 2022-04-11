@@ -3175,7 +3175,7 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 1d5b8793-a135-4239-bd49-02e2f924fa37)
   )
-  (wire (pts (xy 52.07 130.81) (xy 52.07 138.43))
+  (wire (pts (xy 52.07 132.08) (xy 52.07 138.43))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 1f793fb6-ac00-47da-9c31-1b68e1b9df5e)
   )
@@ -6635,17 +6635,17 @@
     (pin "9" (uuid 94218812-d402-4692-92b6-a4b6b102e738))
   )
 
-  (symbol (lib_id "power:+3V3") (at 52.07 130.81 0) (unit 1)
+  (symbol (lib_id "power:+3V3") (at 52.07 132.08 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid c0fcfb6f-e2dc-4bae-9071-4d3a7b1e559b)
-    (property "Reference" "#PWR0175" (id 0) (at 52.07 134.62 0)
+    (property "Reference" "#PWR0175" (id 0) (at 52.07 135.89 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "+3V3" (id 1) (at 52.07 125.73 0))
-    (property "Footprint" "" (id 2) (at 52.07 130.81 0)
+    (property "Value" "+3V3" (id 1) (at 52.07 127 0))
+    (property "Footprint" "" (id 2) (at 52.07 132.08 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (id 3) (at 52.07 130.81 0)
+    (property "Datasheet" "" (id 3) (at 52.07 132.08 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 7bbcded8-64a3-4e9e-9a6c-c6b328f2ab4f))
@@ -6686,10 +6686,10 @@
   )
 
   (symbol (lib_id "Diode:BAT54C") (at 44.45 142.24 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (in_bom yes) (on_board yes)
     (uuid d650d826-ee37-47ce-bfca-ceee2c9f6052)
-    (property "Reference" "D?" (id 0) (at 44.45 135.89 0))
-    (property "Value" "" (id 1) (at 44.45 138.43 0))
+    (property "Reference" "D1" (id 0) (at 44.45 135.89 0))
+    (property "Value" "" (id 1) (at 38.1 144.78 0))
     (property "Footprint" "" (id 2) (at 46.355 139.065 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
@@ -7216,6 +7216,9 @@
     (path "/cfa038c0-a49f-45bf-b6e3-72692695ea2c/56d29c62-b2b5-4ace-9fab-a8e69049c888"
       (reference "C35") (unit 1) (value "100u") (footprint "Capacitor_SMD:C_0805_2012Metric")
     )
+    (path "/d650d826-ee37-47ce-bfca-ceee2c9f6052"
+      (reference "D1") (unit 1) (value "BAT54C") (footprint "Package_TO_SOT_SMD:SOT-23")
+    )
     (path "/96cbc19c-9e01-406e-a91b-5164df994b39"
       (reference "D2") (unit 1) (value "MB1S") (footprint "Package_SO:SO-4_4.4x3.6mm_P2.54mm")
     )
@@ -7239,9 +7242,6 @@
     )
     (path "/cfa038c0-a49f-45bf-b6e3-72692695ea2c/61cb9ba8-b974-4c1c-9a84-fd9c3e022760"
       (reference "D9") (unit 1) (value "D_Schottky") (footprint "Diode_SMD:D_SMA")
-    )
-    (path "/d650d826-ee37-47ce-bfca-ceee2c9f6052"
-      (reference "D?") (unit 1) (value "BAT54C") (footprint "Package_TO_SOT_SMD:SOT-23")
     )
     (path "/74e5bcde-a2f3-4e4c-9540-20adf9b3b91b"
       (reference "E1") (unit 1) (value "SparkGap") (footprint "PSE2021:SPARK_GAP_TRIANGLE")
