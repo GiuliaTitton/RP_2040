@@ -4,6 +4,12 @@
 
   (paper "A3")
 
+  (title_block
+    (title "PPSE_LAN_NTP")
+    (date "2022-04-12")
+    (rev "0")
+  )
+
   (lib_symbols
     (symbol "+1V1_1" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
       (property "Reference" "#PWR0173" (id 0) (at 0 -3.81 0)
@@ -6689,8 +6695,8 @@
     (in_bom yes) (on_board yes)
     (uuid d650d826-ee37-47ce-bfca-ceee2c9f6052)
     (property "Reference" "D1" (id 0) (at 44.45 135.89 0))
-    (property "Value" "" (id 1) (at 38.1 144.78 0))
-    (property "Footprint" "" (id 2) (at 46.355 139.065 0)
+    (property "Value" "BAT54C" (id 1) (at 38.1 144.78 0))
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23" (id 2) (at 46.355 139.065 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "http://www.diodes.com/_files/datasheets/ds11005.pdf" (id 3) (at 42.418 142.24 0)

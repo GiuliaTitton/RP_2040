@@ -5,13 +5,13 @@
       "Application": "Pcbnew",
       "Version": "(6.0.4)"
     },
-    "CreationDate": "2022-04-11T14:57:37+02:00"
+    "CreationDate": "2022-04-12T15:49:34+02:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
       "Name": "PSE_RP2040",
       "GUID": "5053455f-5250-4323-9034-302e6b696361",
-      "Revision": "rev?"
+      "Revision": "0"
     },
     "Size": {
       "X": 85.15,
@@ -46,11 +46,6 @@
     {
       "Path": "PSE_RP2040-F_Paste.gbr",
       "FileFunction": "SolderPaste,Top",
-      "FilePolarity": "Positive"
-    },
-    {
-      "Path": "PSE_RP2040-B_Paste.gbr",
-      "FileFunction": "SolderPaste,Bot",
       "FilePolarity": "Positive"
     },
     {
