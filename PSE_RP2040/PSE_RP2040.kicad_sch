@@ -5714,7 +5714,7 @@
     (property "Reference" "R3" (id 0) (at 128.778 24.2316 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "R" (id 1) (at 128.778 26.543 0)
+    (property "Value" "" (id 1) (at 128.778 26.543 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (id 2) (at 125.222 25.4 90)
@@ -7295,7 +7295,7 @@
       (reference "L1") (unit 1) (value "200mA 120Ohm") (footprint "Inductor_SMD:L_0603_1608Metric")
     )
     (path "/fcbec5fb-5634-49d7-ab3e-008c50bb3423/6ec098cb-680a-41b5-863d-72af52f9f343"
-      (reference "L2") (unit 1) (value "25uH") (footprint "Inductor_SMD:L_0603_1608Metric")
+      (reference "L2") (unit 1) (value "120 Ohm 300mA") (footprint "Inductor_SMD:L_0603_1608Metric")
     )
     (path "/cfa038c0-a49f-45bf-b6e3-72692695ea2c/abfd9c6f-e415-4b01-9df7-ea3b440b6b49"
       (reference "L3") (unit 1) (value "22u") (footprint "Inductor_SMD:L_Vishay_IFSC-1515AH_4x4x1.8mm")
@@ -7310,7 +7310,7 @@
       (reference "R2") (unit 1) (value "100") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-00006281448f"
-      (reference "R3") (unit 1) (value "R") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R3") (unit 1) (value "330") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/87ddd80d-3ce8-4677-b479-08fe58a1d559"
       (reference "R4") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
