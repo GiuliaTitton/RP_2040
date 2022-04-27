@@ -16,7 +16,7 @@
 
 
 
-static int addr = RTC_PCF8563_I2C_ADR;
+//static int addr = RTC_PCF8563_I2C_ADR;
 
 
 uint8_t pcf8563_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_bytes){
