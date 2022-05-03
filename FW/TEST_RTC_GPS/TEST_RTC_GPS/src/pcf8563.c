@@ -18,11 +18,9 @@
 
 //static int addr = RTC_PCF8563_I2C_ADR;
 
-
+/* versione precedente
 uint8_t pcf8563_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_bytes){
-
-    
-    
+ 
     if(PICO_ERROR_GENERIC == i2c_write_blocking(i2c0, RTC_PCF8563_I2C_ADR, &base_address, 1, true)) //don't send stop after write op
         return 0;
     else {
@@ -30,20 +28,18 @@ uint8_t pcf8563_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_byte
         return 1;
     }
 }
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//nuova versione -- pagina datasheet 6 e 23
+uint8_t pcf8563_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_bytes){
+ 
+    if(PICO_ERROR_GENERIC == i2c_write_blocking(i2c0, RTC_PCF8563_I2C_ADR_WRITE, &base_address, 1, true)) //don't send stop after write op
+        return 0;
+    else {
+        i2c_read_blocking(i2c0, RTC_PCF8563_I2C_ADR_READ, data, n_bytes, false); //send stop after reading
+        return 1;
+    }
+}
 
 #if 0
 
