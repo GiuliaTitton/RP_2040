@@ -14,7 +14,7 @@
 #define PCF8563_VL_SECS_REG 0x02    //puntatore registro secondi
 #define PCF_DATA_NBYTES 7
 
-#define START_MILLENNIUM 2
+#define START_MILLENNIUM 2000
 
 
 
