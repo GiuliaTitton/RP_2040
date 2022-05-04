@@ -43,6 +43,7 @@ add_executable(${PROJECT_NAME}
 	src/file.c
         src/bmp180.c
         src/pcf8563.c
+        src/mcp7940.c
         )
 
 # pull in common dependencies

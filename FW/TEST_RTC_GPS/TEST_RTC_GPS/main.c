@@ -52,6 +52,12 @@ int main() {
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
     gpio_put(LED_PIN, 0);  //led off
+
+
+void gpio_callback(uint gpio, uint32_t events); //callback  declaration
+
+
+
 /*************************************/
 /*PPS IRQ*/
 

@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/TEST_RTC_GPS"
+    "cmake.sourceDirectory": "${workspaceFolder}/TEST_RTC_GPS",
+    "files.associations": {
+        "i2c.h": "c"
+    }
 }

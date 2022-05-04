@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "pico-sdk/src/rp2_common/hardware_clocks",
+		"source" : "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/hardware_clocks"
+	}
+}
