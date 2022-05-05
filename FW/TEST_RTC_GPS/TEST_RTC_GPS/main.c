@@ -144,13 +144,14 @@ void gpio_callback(uint gpio, uint32_t events); //callback  declaration
 
     mcp_data_buf[0]= num_to_BCD(10,4); //sec
     mcp_data_buf[1]= num_to_BCD(43,4);//min
-    mcp_data_buf[2]= num_to_BCD(16,4);//hour
+    mcp_data_buf[2]= num_to_BCD(16,4)&(~(1<<6));//hour + f. 24h
+
     mcp_data_buf[3]= num_to_BCD(5,4);//day
     mcp_data_buf[4]= num_to_BCD(3,4);//date
     mcp_data_buf[5]= num_to_BCD(5,4);//month
     mcp_data_buf[6]= num_to_BCD(22,4);//year
 
-    mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, MCP7940_DATA_NBYTES);
+    mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, sizeof(mcp_data_buf));
 
 
 

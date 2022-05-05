@@ -58,6 +58,6 @@ uint8_t num_to_BCD(uint8_t value, uint8_t unitBits){
 }
 
 uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits){
-    return ((valueBCD>>unitBits) & ((0x0F << decBits) & 0x0F))*10 + (unitBits & 0x0F);
+    return (((valueBCD>>unitBits) & ((0x0F >> 4 - decBits)))*10 + (valueBCD & 0x0F));
 }
 

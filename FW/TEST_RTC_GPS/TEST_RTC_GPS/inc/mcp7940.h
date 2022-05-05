@@ -26,7 +26,7 @@
 06
 */
 
-#define START_MILLENNIUM 2000
+#define START_MILLENNIUM 2
 
 uint8_t mcp7940_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_bytes);
 
