@@ -26,9 +26,8 @@
 
 
 //user inclusions
-#include "file.h"
-#include "bmp180.h"
-#include "pcf8563_h.h"
+
+#include "mcp7940.h"
 
 
 
@@ -126,14 +125,14 @@ void gpio_callback(uint gpio, uint32_t events); //callback  declaration
         sleep_ms(90);       
     } 
 
-    //uint8_t id =4;
+    
 
 /***************************************/
 /*pcf init*/
 
 
 
-    uint8_t pcf_data_buf[PCF_DATA_NBYTES];
+    uint8_t mcp_data_buf[MCP7940_DATA_NBYTES];
     uint8_t _second, _minute, _hour, _day, _weekday, _month, _year; //, _century; 
     uint16_t current_year;
     enum wd {SUN=0, MON, TUE, WED, THU, FRI, SAT} today;  
@@ -143,43 +142,47 @@ void gpio_callback(uint gpio, uint32_t events); //callback  declaration
     uint64_t my_timestamp= time_us_64();
 
 
+    mcp_data_buf[0]= num_to_BCD(10,4); //sec
+    mcp_data_buf[1]= num_to_BCD(43,4);//min
+    mcp_data_buf[2]= num_to_BCD(16,4);//hour
+    mcp_data_buf[3]= num_to_BCD(5,4);//day
+    mcp_data_buf[4]= num_to_BCD(3,4);//date
+    mcp_data_buf[5]= num_to_BCD(5,4);//month
+    mcp_data_buf[6]= num_to_BCD(22,4);//year
 
+    mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, MCP7940_DATA_NBYTES);
 
 
 
 
     while (true) {
 
-        /*id = bmp_180_getID(); //prova comunicazione con bmp180
-        printf("chip id: 0x%02X\n", id);
-        sleep_ms(750);*/
 
-        if(1000*1000 == time_us_64()- my_timestamp){
+        if(1000*1000 == time_us_64()- my_timestamp){ // ogni secondo (10^6 us..)
             
-            led_val = !led_val;
+            led_val = !led_val; //toggle led value
 
             my_timestamp = time_us_64();
-            pcf8563_get_all_data(pcf_data_buf, PCF8563_VL_SECS_REG, PCF_DATA_NBYTES);
+            //mcp7940_write_single_register(MCP7940_SECS_REG, 45);
+            mcp7940_get_all_data(mcp_data_buf, MCP7940_SECS_REG, MCP7940_DATA_NBYTES);
+            
 
-            _second = BCD_to_num(pcf_data_buf[0], 4);
+            _second = BCD_to_num(mcp_data_buf[0], 4,3);
 
-            _minute = BCD_to_num(pcf_data_buf[1], 4);
+            _minute = BCD_to_num(mcp_data_buf[1], 4,3);
 
-            _hour = BCD_to_num(pcf_data_buf[2], 4);
+            _hour = BCD_to_num(mcp_data_buf[2], 4,3);
 
-            _weekday = pcf_data_buf[3]; //in BCD
+            _weekday = mcp_data_buf[3]; //in BCD
             _weekday = (_weekday & 0x07);
             today = _weekday;
 
-            _day = BCD_to_num(pcf_data_buf[4], 4);
+            _day = BCD_to_num(mcp_data_buf[4], 4, 2);
 
-            _month = BCD_to_num(pcf_data_buf[5], 4);     
+            _month = BCD_to_num(mcp_data_buf[5], 4, 1);     
 
-            /*non disponibile con mcp
-            _century = pcf_data_buf[5]; //in BCD
-            _century = ((_century>>7) & 0x1F) ; //pcf Ritorna solo 0 o 1 se passato il secolo
-            */
-            _year = BCD_to_num(pcf_data_buf[6], 4);
+            
+            _year = BCD_to_num(mcp_data_buf[6], 4, 4);
 
             current_year = START_MILLENNIUM + /*100*_century*/ + _year;
 

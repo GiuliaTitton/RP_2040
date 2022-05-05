@@ -71,6 +71,4 @@ CMakeFiles\test_RTC_GPS.dir\main.c.obj: \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\hardware_irq\include/hardware/irq.h \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/intctrl.h \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/m0plus.h \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc/file.h \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc/bmp180.h \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc/pcf8563_h.h
+ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc/mcp7940.h
