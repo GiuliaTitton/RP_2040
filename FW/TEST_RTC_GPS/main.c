@@ -25,6 +25,7 @@
 
 
 
+
 //user inclusions
 
 #include "mcp7940.h"
@@ -38,7 +39,11 @@
 //static int chars_rxed = 0;
 void on_uart_rx();
 
+//NMEA constants
+#define MESSAGE_OFFSET_TIME 7
+#define COMMAS_BEFORE_DATUM 9
 #define MAX_NMEA_LEN 82
+
 static bool valid_sntnc=false;
 static bool end_sentence=false;
 uint8_t string_index = 0;
@@ -47,7 +52,8 @@ uint8_t nmea_rcvd_sntnc=false;
 uint8_t nmea_sntnc[MAX_NMEA_LEN];
 uint8_t nmea_field =0;
 uint8_t gps_time_buf[11];
-
+uint8_t gps_datum_buf[7];
+uint8_t index_data_gps;
 
 
 
@@ -197,15 +203,21 @@ my_timestamp= time_us_64();
 
 ///TODO: CHECK CHECKSUM
 //      ESTRARRE ORA UTC
-//ESTRARRE DATA DA GPRMC
 
-            //$GPGGA,144132.086,,,,,0,0,,,M,,M,,*47
+            
             //$GPRMC,152606.090,V,,,,,0.00,0.00,070522,,,N*40
             for(uint8_t j=0; j<10;j++){
-                gps_time_buf[j] = nmea_sntnc[j+7];
+                gps_time_buf[j] = nmea_sntnc[j + MESSAGE_OFFSET_TIME];
             }gps_time_buf[10]='\0';//terminatore di stringa
 
             printf("%s\n", gps_time_buf);
+
+            for(uint8_t j=0; j<6;j++){
+                gps_datum_buf[j] = nmea_sntnc[j+ index_data_gps];
+            }gps_datum_buf[6]='\0';//terminatore di stringa
+            
+            printf("%s\n", gps_datum_buf);
+
         }
 
 
@@ -259,7 +271,7 @@ void on_uart_rx() {
 
 
         uint8_t ch=uart_getc(UART_ID);
-
+        uint8_t commasCounter = 0;
         
 //la prima frase può arrivare corrotta, iniziando da carattere diverso da $
 //finché non ricevo il primo terminatore \r\n scarto tutti i caratteri. solo dalla seconda considero i dati ok.
@@ -277,11 +289,18 @@ void on_uart_rx() {
             nmea_sntnc[string_index] = ch;
 
             if(3==string_index) 
-                if('G'!= nmea_sntnc[string_index]) valid_sntnc=false;
+                if('R'!= nmea_sntnc[string_index]) valid_sntnc=false;
             if(4==string_index)
-                if('G'!= nmea_sntnc[string_index]) valid_sntnc=false; 
+                if('M'!= nmea_sntnc[string_index]) valid_sntnc=false; 
             if(5==string_index)
-                if('A'!= nmea_sntnc[string_index]) valid_sntnc=false;
+                if('C'!= nmea_sntnc[string_index]) valid_sntnc=false;
+
+            //track datum
+            if (commasCounter == COMMAS_BEFORE_DATUM)
+                index_data_gps = string_index;
+
+            if (',' == nmea_sntnc[string_index])
+                commasCounter++;
 
 
             if('*'==nmea_sntnc[string_index]){
