@@ -1,4 +1,4 @@
-# Install script for directory: D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS
+# Install script for directory: D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

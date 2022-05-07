@@ -71,7 +71,7 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS/inc"
+  "../inc"
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/common/pico_stdlib/include"
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/hardware_gpio/include"
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/common/pico_base/include"
@@ -178,11 +178,11 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj.d"
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj.d"
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj.d"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS/main.c" "CMakeFiles/test_RTC_GPS.dir/main.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/main.c.obj.d"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS/src/bmp180.c" "CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.obj.d"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS/src/file.c" "CMakeFiles/test_RTC_GPS.dir/src/file.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/file.c.obj.d"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS/src/mcp7940.c" "CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.obj.d"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/TEST_RTC_GPS/src/pcf8563.c" "CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.obj.d"
+  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/main.c" "CMakeFiles/test_RTC_GPS.dir/main.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/main.c.obj.d"
+  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/src/bmp180.c" "CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.obj.d"
+  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/src/file.c" "CMakeFiles/test_RTC_GPS.dir/src/file.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/file.c.obj.d"
+  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/src/mcp7940.c" "CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.obj.d"
+  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/TEST_RTC_GPS/src/pcf8563.c" "CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.obj.d"
   "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/D_/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj.d"
   )
 

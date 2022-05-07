@@ -1,6 +1,6 @@
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc/file.h \
+ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\file.c \
+ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\inc/file.h \
  d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdio.h \
  d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\_ansi.h \
  d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\newlib.h \

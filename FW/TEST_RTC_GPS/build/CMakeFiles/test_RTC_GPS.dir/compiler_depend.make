@@ -2867,7 +2867,7 @@ CMakeFiles\test_RTC_GPS.dir\D_\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2
 CMakeFiles\test_RTC_GPS.dir\D_\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_unique_id\unique_id.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_unique_id\include\pico\unique_id.h
 
 
-CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: ..\main.c
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_stdlib\include\pico\stdlib.h
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_base\include\pico.h
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_base\include\pico\types.h
@@ -2939,11 +2939,15 @@ CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\hardware_irq\include\hardware\irq.h
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\intctrl.h
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\m0plus.h
-CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\mcp7940.h
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: ..\inc\mcp7940.h
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\string.h"
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\_locale.h"
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\strings.h"
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\string.h"
 
 
-CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\bmp180.c
-CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\bmp180.h
+CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: ..\src\bmp180.c
+CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: ..\inc\bmp180.h
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdio.h"
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_ansi.h"
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\newlib.h"
@@ -3002,8 +3006,8 @@ CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\F
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\dreq.h
 
 
-CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c
-CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\file.h
+CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: ..\src\file.c
+CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: ..\inc\file.h
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdio.h"
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_ansi.h"
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\newlib.h"
@@ -3035,8 +3039,8 @@ CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: "D:\Program Files\GNU Arm Embedded T
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\stdio.h"
 
 
-CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\mcp7940.c
-CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\mcp7940.h
+CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: ..\src\mcp7940.c
+CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: ..\inc\mcp7940.h
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdio.h"
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_ansi.h"
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\newlib.h"
@@ -3095,8 +3099,8 @@ CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\dreq.h
 
 
-CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\pcf8563.c
-CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\pcf8563_h.h
+CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: ..\src\pcf8563.c
+CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: ..\inc\pcf8563_h.h
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdio.h"
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_ansi.h"
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\newlib.h"
@@ -3188,6 +3192,8 @@ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_platform\includ
 
 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_stdio\include\pico\stdio.h:
 
+..\inc\file.h:
+
 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_base\include\pico\types.h:
 
 "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdbool.h":
@@ -3274,8 +3280,6 @@ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\lib\tinyusb\src\common\tusb_common.
 
 "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\_locale.h":
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\file.h:
-
 "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\strings.h":
 
 "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\syslimits.h":
@@ -3283,6 +3287,8 @@ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\file.h:
 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\lib\tinyusb\src\common\tusb_types.h:
 
 "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\string.h":
+
+..\inc\mcp7940.h:
 
 "D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\endian.h":
 
@@ -3612,18 +3618,16 @@ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_stdlib\include\pico
 
 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_unique_id\unique_id.c:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c:
+..\main.c:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\mcp7940.h:
+..\src\bmp180.c:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\bmp180.c:
+..\inc\bmp180.h:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\bmp180.h:
+..\src\file.c:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c:
+..\src\mcp7940.c:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\mcp7940.c:
+..\src\pcf8563.c:
 
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\pcf8563.c:
-
-D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc\pcf8563_h.h:
+..\inc\pcf8563_h.h:

@@ -1,5 +1,5 @@
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c \
+ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\main.c \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_stdlib\include/pico/stdlib.h \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_base\include/pico.h \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\common\pico_base\include/pico/types.h \
@@ -71,4 +71,8 @@ CMakeFiles\test_RTC_GPS.dir\main.c.obj: \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\hardware_irq\include/hardware/irq.h \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/intctrl.h \
  D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/m0plus.h \
- D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\inc/mcp7940.h
+ D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\inc/mcp7940.h \
+ d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\string.h \
+ d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\_locale.h \
+ d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\strings.h \
+ d:\program\ files\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\string.h

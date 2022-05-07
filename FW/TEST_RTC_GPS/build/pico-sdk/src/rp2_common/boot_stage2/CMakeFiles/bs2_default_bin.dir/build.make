@@ -42,7 +42,7 @@ RM = "D:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS
+CMAKE_SOURCE_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build
@@ -81,6 +81,6 @@ pico-sdk\src\rp2_common\boot_stage2\CMakeFiles\bs2_default_bin.dir\clean:
 .PHONY : pico-sdk\src\rp2_common\boot_stage2\CMakeFiles\bs2_default_bin.dir\clean
 
 pico-sdk\src\rp2_common\boot_stage2\CMakeFiles\bs2_default_bin.dir\depend:
-	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\boot_stage2 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\pico-sdk\src\rp2_common\boot_stage2 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\pico-sdk\src\rp2_common\boot_stage2\CMakeFiles\bs2_default_bin.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\boot_stage2 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\pico-sdk\src\rp2_common\boot_stage2 D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\pico-sdk\src\rp2_common\boot_stage2\CMakeFiles\bs2_default_bin.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : pico-sdk\src\rp2_common\boot_stage2\CMakeFiles\bs2_default_bin.dir\depend
 

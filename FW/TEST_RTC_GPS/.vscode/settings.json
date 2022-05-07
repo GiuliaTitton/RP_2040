@@ -1,6 +1,4 @@
 {
-    "cmake.sourceDirectory": "${workspaceFolder}/TEST_RTC_GPS",
-    "files.associations": {
-        "i2c.h": "c"
-    }
+    "editor.accessibilityPageSize": 12,
+    "editor.fontSize": 12
 }

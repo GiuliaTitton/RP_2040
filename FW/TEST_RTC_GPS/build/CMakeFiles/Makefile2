@@ -43,7 +43,7 @@ RM = "D:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS
+CMAKE_SOURCE_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build

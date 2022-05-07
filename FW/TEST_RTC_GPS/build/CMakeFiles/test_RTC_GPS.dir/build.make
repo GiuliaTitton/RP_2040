@@ -42,7 +42,7 @@ RM = "D:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS
+CMAKE_SOURCE_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build
@@ -59,74 +59,74 @@ include CMakeFiles\test_RTC_GPS.dir\progress.make
 include CMakeFiles\test_RTC_GPS.dir\flags.make
 
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: CMakeFiles\test_RTC_GPS.dir\flags.make
-CMakeFiles\test_RTC_GPS.dir\main.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c
+CMakeFiles\test_RTC_GPS.dir\main.c.obj: ..\main.c
 CMakeFiles\test_RTC_GPS.dir\main.c.obj: CMakeFiles\test_RTC_GPS.dir\compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/test_RTC_GPS.dir/main.c.obj"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\main.c.obj -MF CMakeFiles\test_RTC_GPS.dir\main.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\main.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\main.c.obj -MF CMakeFiles\test_RTC_GPS.dir\main.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\main.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\main.c
 
 CMakeFiles\test_RTC_GPS.dir\main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_RTC_GPS.dir/main.c.i"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c > CMakeFiles\test_RTC_GPS.dir\main.c.i
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\main.c > CMakeFiles\test_RTC_GPS.dir\main.c.i
 
 CMakeFiles\test_RTC_GPS.dir\main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_RTC_GPS.dir/main.c.s"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\main.c -o CMakeFiles\test_RTC_GPS.dir\main.c.s
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\main.c -o CMakeFiles\test_RTC_GPS.dir\main.c.s
 
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: CMakeFiles\test_RTC_GPS.dir\flags.make
-CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c
+CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: ..\src\file.c
 CMakeFiles\test_RTC_GPS.dir\src\file.c.obj: CMakeFiles\test_RTC_GPS.dir\compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/test_RTC_GPS.dir/src/file.c.obj"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\file.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\file.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\file.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\file.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\file.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\file.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\file.c
 
 CMakeFiles\test_RTC_GPS.dir\src\file.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_RTC_GPS.dir/src/file.c.i"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c > CMakeFiles\test_RTC_GPS.dir\src\file.c.i
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\file.c > CMakeFiles\test_RTC_GPS.dir\src\file.c.i
 
 CMakeFiles\test_RTC_GPS.dir\src\file.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_RTC_GPS.dir/src/file.c.s"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\file.c -o CMakeFiles\test_RTC_GPS.dir\src\file.c.s
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\file.c -o CMakeFiles\test_RTC_GPS.dir\src\file.c.s
 
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: CMakeFiles\test_RTC_GPS.dir\flags.make
-CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\bmp180.c
+CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: ..\src\bmp180.c
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj: CMakeFiles\test_RTC_GPS.dir\compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.obj"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\bmp180.c
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\bmp180.c
 
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.i"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\bmp180.c > CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.i
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\bmp180.c > CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.i
 
 CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_RTC_GPS.dir/src/bmp180.c.s"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\bmp180.c -o CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.s
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\bmp180.c -o CMakeFiles\test_RTC_GPS.dir\src\bmp180.c.s
 
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: CMakeFiles\test_RTC_GPS.dir\flags.make
-CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\pcf8563.c
+CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: ..\src\pcf8563.c
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj: CMakeFiles\test_RTC_GPS.dir\compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.obj"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\pcf8563.c
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\pcf8563.c
 
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.i"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\pcf8563.c > CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.i
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\pcf8563.c > CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.i
 
 CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_RTC_GPS.dir/src/pcf8563.c.s"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\pcf8563.c -o CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.s
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\pcf8563.c -o CMakeFiles\test_RTC_GPS.dir\src\pcf8563.c.s
 
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: CMakeFiles\test_RTC_GPS.dir\flags.make
-CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\mcp7940.c
+CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: ..\src\mcp7940.c
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj: CMakeFiles\test_RTC_GPS.dir\compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.obj"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\mcp7940.c
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj -MF CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj.d -o CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.obj -c D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\mcp7940.c
 
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.i"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\mcp7940.c > CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.i
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\mcp7940.c > CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.i
 
 CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/test_RTC_GPS.dir/src/mcp7940.c.s"
-	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS\src\mcp7940.c -o CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.s
+	"D:\Program Files\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\src\mcp7940.c -o CMakeFiles\test_RTC_GPS.dir\src\mcp7940.c.s
 
 CMakeFiles\test_RTC_GPS.dir\D_\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c.obj: CMakeFiles\test_RTC_GPS.dir\flags.make
 CMakeFiles\test_RTC_GPS.dir\D_\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c.obj: D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c
@@ -1257,6 +1257,6 @@ CMakeFiles\test_RTC_GPS.dir\clean:
 .PHONY : CMakeFiles\test_RTC_GPS.dir\clean
 
 CMakeFiles\test_RTC_GPS.dir\depend:
-	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\TEST_RTC_GPS D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles\test_RTC_GPS.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build D:\WORKSPACE\PSE2_RP2040\RP_2040\FW\TEST_RTC_GPS\build\CMakeFiles\test_RTC_GPS.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles\test_RTC_GPS.dir\depend
 
