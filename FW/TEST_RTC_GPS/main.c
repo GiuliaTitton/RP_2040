@@ -6,6 +6,7 @@
 
 #include "pico/stdlib.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <hardware/i2c.h>
 #include "hardware/uart.h"
 #include "hardware/irq.h"
@@ -52,7 +53,9 @@ uint8_t nmea_rcvd_sntnc=false;
 uint8_t nmea_sntnc[MAX_NMEA_LEN];
 uint8_t nmea_field =0;
 uint8_t gps_time_buf[11];
+uint8_t time_GPS;
 uint8_t gps_datum_buf[7];
+uint8_t datum_GPS;
 uint8_t index_data_gps;
 
 
@@ -212,12 +215,34 @@ my_timestamp= time_us_64();
 
             printf("%s\n", gps_time_buf);
 
+            //ascii to number
+            time_GPS =  atof(gps_time_buf[0]) * 100000 + 
+                        atof(gps_time_buf[1]) * 10000  +
+                        atof(gps_time_buf[2]) * 1000   +
+                        atof(gps_time_buf[3]) * 100    +
+                        atof(gps_time_buf[4]) * 10     +
+                        atof(gps_time_buf[5])          + //indice 6 del punto
+                        atof(gps_time_buf[7]) * 0.1    +
+                        atof(gps_time_buf[8]) * 0.01   +
+                        atof(gps_time_buf[9]) * 0.001  ;
+
+            printf("%f\n", time_GPS);
+
             for(uint8_t j=0; j<6;j++){
                 gps_datum_buf[j] = nmea_sntnc[j+ index_data_gps];
             }gps_datum_buf[6]='\0';//terminatore di stringa
             
             printf("%s\n", gps_datum_buf);
 
+            time_GPS =  atof(gps_datum_buf[0]) * 100000 + 
+                        atof(gps_datum_buf[1]) * 10000  +
+                        atof(gps_datum_buf[2]) * 1000   +
+                        atof(gps_datum_buf[3]) * 100    +
+                        atof(gps_datum_buf[4]) * 10     +
+                        atof(gps_datum_buf[5])          ;
+
+            printf("%f\n", gps_datum_buf);
+            
         }
 
 
