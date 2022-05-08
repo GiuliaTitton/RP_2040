@@ -52,9 +52,7 @@ uint8_t nmea_star_index;
 uint8_t nmea_rcvd_sntnc=false;
 uint8_t nmea_sntnc[MAX_NMEA_LEN];
 uint8_t nmea_field =0;
-uint8_t gps_time_buf[11];
 uint8_t time_GPS;
-uint8_t gps_datum_buf[7];
 uint8_t datum_GPS;
 uint8_t index_data_gps;
 
@@ -207,7 +205,8 @@ my_timestamp= time_us_64();
 ///TODO: CHECK CHECKSUM
 //      ESTRARRE ORA UTC
 
-            
+            uint8_t gps_time_buf[11];
+            uint8_t gps_datum_buf[7];
             //$GPRMC,152606.090,V,,,,,0.00,0.00,070522,,,N*40
             for(uint8_t j=0; j<10;j++){
                 gps_time_buf[j] = nmea_sntnc[j + MESSAGE_OFFSET_TIME];
@@ -221,7 +220,7 @@ my_timestamp= time_us_64();
                         atof(gps_time_buf[2]) * 1000   +
                         atof(gps_time_buf[3]) * 100    +
                         atof(gps_time_buf[4]) * 10     +
-                        atof(gps_time_buf[5])          + //indice 6 del punto
+                        atof(gps_time_buf[5])          + //indice 6: punto
                         atof(gps_time_buf[7]) * 0.1    +
                         atof(gps_time_buf[8]) * 0.01   +
                         atof(gps_time_buf[9]) * 0.001  ;
