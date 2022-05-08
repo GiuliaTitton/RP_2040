@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_ASM
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/boot_stage2/compile_time_choice.S" "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/STRUTTURA_BASE/build/pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/boot_stage2/compile_time_choice.S" "/Users/matteo/Documents/GitHub/RP_2040/FW/STRUTTURA_BASE/build/pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj"
   )
 set(CMAKE_ASM_COMPILER_ID "GNU")
 
@@ -22,14 +22,14 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/boot_stage2/asminclude"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2040/hardware_regs/include"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/hardware_base/include"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/common/pico_base/include"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/boot_stage2/asminclude"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2040/hardware_regs/include"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/hardware_base/include"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/common/pico_base/include"
   "generated/pico_base"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/boards/include"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/pico_platform/include"
-  "D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/src/rp2_common/boot_stage2/include"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/boards/include"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/pico_platform/include"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/boot_stage2/include"
   )
 
 # The set of dependency files which are needed:

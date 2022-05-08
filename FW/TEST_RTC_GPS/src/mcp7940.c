@@ -61,3 +61,39 @@ uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits){
     return (((valueBCD>>unitBits) & ((0x0F >> 4 - decBits)))*10 + (valueBCD & 0x0F));
 }
 
+uint8_t set_allarm(uint8_t allarmNumber, uint8_t allarmMask, uint8_t reg_address, uint8_t valueBCD, bool interruptHighLow){
+    uint8_t errorTrack = 1;
+    uint8_t temp;
+    bool skip = 0;
+
+    if(allarmNumber)
+        temp = MCP7940_ALM1_MASK_REG;
+    else
+        temp = MCP7940_ALM0_MASK_REG;
+
+    //eccezione timer giorno settimana
+    if(reg_address == temp){
+        allarmMask = allarmMask | valueBCD;
+        skip = 1;
+    }
+    //set interrupt H/L + flag cancellato
+    if (interruptHighLow)
+        allarmMask = allarmMask | 0x80;
+
+    //set allarm mask: definisce la tipologia del timer/calendario
+    errorTrack *= mcp7940_write_single_register(temp, allarmMask);
+
+    //eccezione timer giorno della settimana
+    if(!skip)
+        errorTrack *= mcp7940_write_single_register(reg_address, valueBCD);
+    
+    //abilitazione timer
+    if(allarmNumber)
+        temp = MCP7940_ALM1_EN;
+    else
+        temp = MCP7940_ALM0_EN;
+
+    return errorTrack * mcp7940_write_single_register(MCP7940_CONTROL_REG, temp);
+
+    
+}
