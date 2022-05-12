@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "netif.h": "c"
+        "netif.h": "c",
+        "*.tcc": "c"
     }
 }

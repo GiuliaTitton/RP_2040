@@ -7,6 +7,8 @@
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
 
+#include <stdbool.h>
+
 #include "hardware/clocks.h"
 
 #include "lwip/dhcp.h"
@@ -26,7 +28,30 @@ void netif_status_callback(struct netif *netif)
     printf("netif status changed %s\n", ip4addr_ntoa(netif_ip4_addr(netif)));
 }
 
+
+
+const uint LED_PIN = PICO_DEFAULT_LED_PIN;
+void led_task(void);
+
 int main() {
+    
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    gpio_put(LED_PIN, 0);  //led off
+
+
+
+
+    for(uint8_t i=0; i<4;i++){
+        gpio_put(LED_PIN, 1);  //led off
+        sleep_ms(80);
+        gpio_put(LED_PIN, 0);  //led on
+        sleep_ms(20);       
+    } 
+
+
+
+
     // LWIP network interface
     struct netif netif;
 
@@ -46,6 +71,8 @@ int main() {
 
     // initialize stdio after the clock change
     stdio_init_all();
+
+
     sleep_ms(5000);
     
     printf("pico rmii ethernet - httpd\n");
@@ -56,6 +83,8 @@ int main() {
     // initialize the PIO base RMII Ethernet network interface
     netif_rmii_ethernet_init(&netif, &netif_config);
     
+
+
     // assign callbacks for link and status
     netif_set_link_callback(&netif, netif_link_callback);
     netif_set_status_callback(&netif, netif_status_callback);
@@ -65,8 +94,11 @@ int main() {
     netif_set_up(&netif);
 
     // Start DHCP client and httpd
+
+
     dhcp_start(&netif);
     httpd_init();
+
 
     // setup core 1 to monitor the RMII ethernet interface
     // this let's core 0 do other things :)
@@ -74,7 +106,30 @@ int main() {
 
     while (1) {
         tight_loop_contents();
+
+
+        led_task();
+
+
+
     }
 
     return 0;
+}
+
+uint64_t led_dbg_period=200, led_timestamp;
+bool led_val;
+
+void led_task(void){
+        if(led_dbg_period <=  time_us_64()- led_timestamp){ //LED TASK
+        led_timestamp = time_us_64();
+        led_val = !led_val; //toggle led val. ricordare led_val = false -> led ON! 
+
+        if(led_val)
+            led_dbg_period = 925*1000; //800 ms led off
+        else led_dbg_period = 75*1000; //200ms on;
+
+        gpio_put(LED_PIN, led_val);
+    }
+    
 }
