@@ -42,9 +42,9 @@ int main() {
 
 
 
-    for(uint8_t i=0; i<4;i++){
+    for(uint8_t i=0; i<5;i++){
         gpio_put(LED_PIN, 1);  //led off
-        sleep_ms(80);
+        sleep_ms(180);
         gpio_put(LED_PIN, 0);  //led on
         sleep_ms(20);       
     } 
