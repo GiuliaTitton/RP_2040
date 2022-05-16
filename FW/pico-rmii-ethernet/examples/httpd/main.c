@@ -40,6 +40,10 @@ int main() {
     gpio_put(LED_PIN, 0);  //led off
 
 
+    gpio_init(13);
+    gpio_set_dir(13, GPIO_OUT);
+    gpio_put(13, 1);  //led off
+
 
 
     for(uint8_t i=0; i<5;i++){
