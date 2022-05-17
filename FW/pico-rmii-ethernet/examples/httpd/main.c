@@ -20,7 +20,7 @@
 
 void netif_link_callback(struct netif *netif)
 {
-    printf("netif link status changed %s\n", netif_is_link_up(netif) ? "up" : "down");
+    printf("A:netif link status changed %s\n", netif_is_link_up(netif) ? "up" : "down");
 }
 
 void netif_status_callback(struct netif *netif)
@@ -32,6 +32,14 @@ void netif_status_callback(struct netif *netif)
 
 const uint LED_PIN = PICO_DEFAULT_LED_PIN;
 void led_task(void);
+
+
+/*******************************/
+uint64_t my_period=1000*1000, my_timestamp;
+ 
+
+
+
 
 int main() {
     
@@ -101,6 +109,7 @@ int main() {
 
 
     dhcp_start(&netif);
+
     httpd_init();
 
 
@@ -113,7 +122,12 @@ int main() {
 
 
         led_task();
-
+        if(my_period <=  time_us_64()- my_timestamp){
+            my_timestamp=time_us_64();
+           // printf("hw:");
+           // printf("%06x\n", netif.hwaddr);
+           // printf("%08x\n", netif.ip_addr);
+        }
 
 
     }
@@ -131,8 +145,10 @@ void led_task(void){
 
         if(led_val)
             led_dbg_period = 925*1000; //800 ms led off
-        else led_dbg_period = 75*1000; //200ms on;
-
+        else {
+            led_dbg_period = 75*1000; //200ms on;
+            
+        }
         gpio_put(LED_PIN, led_val);
     }
     
