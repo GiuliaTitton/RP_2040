@@ -1,0 +1,9 @@
+Documentazione funzioni HTTP client
+https://www.nongnu.org/lwip/2_1_x/group__httpc.html
+
+lwip developer manual:
+https://lwip.fandom.com/wiki/Raw/TCP
+
+examples:
+https://stackoverflow.com/questions/26192758/how-can-i-send-a-simple-http-request-with-a-lwip-stack
+
