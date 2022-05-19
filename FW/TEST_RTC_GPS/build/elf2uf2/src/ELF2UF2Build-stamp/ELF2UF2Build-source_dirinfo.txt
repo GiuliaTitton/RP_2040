@@ -4,6 +4,6 @@
 
 method=source_dir
 command=
-source_dir=D:/WORKSPACE/PSE2_RP2040/RP_2040/FW/pico-sdk/tools/elf2uf2
+source_dir=/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/tools/elf2uf2
 work_dir=
 

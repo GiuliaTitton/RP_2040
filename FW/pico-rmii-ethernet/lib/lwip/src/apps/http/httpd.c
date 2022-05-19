@@ -184,13 +184,16 @@ static char http_uri_buf[LWIP_HTTPD_URI_BUF_LEN + 1];
 /* The number of individual strings that comprise the headers sent before each
  * requested file.
  */
-#define NUM_FILE_HDR_STRINGS 5
+
+//---------------------------------------------
+//modificata dimensione header, prima 5
+#define NUM_FILE_HDR_STRINGS 6
 #define HDR_STRINGS_IDX_HTTP_STATUS           0 /* e.g. "HTTP/1.0 200 OK\r\n" */
 #define HDR_STRINGS_IDX_SERVER_NAME           1 /* e.g. "Server: "HTTPD_SERVER_AGENT"\r\n" */
 #define HDR_STRINGS_IDX_CONTENT_LEN_KEEPALIVE 2 /* e.g. "Content-Length: xy\r\n" and/or "Connection: keep-alive\r\n" */
 #define HDR_STRINGS_IDX_CONTENT_LEN_NR        3 /* the byte count, when content-length is used */
 #define HDR_STRINGS_IDX_CONTENT_TYPE          4 /* the content type (or default answer content type including default document) */
-
+#define HDR_STRINGS_IDK_CONTENT_TIME_CUSTOM   5 /* tempo rtc + gps (+ scostamento?)
 /* The dynamically generated Content-Length buffer needs space for CRLF + NULL */
 #define LWIP_HTTPD_MAX_CONTENT_LEN_OFFSET 3
 #ifndef LWIP_HTTPD_MAX_CONTENT_LEN_SIZE
@@ -884,6 +887,15 @@ get_http_headers(struct http_state *hs, const char *uri)
     hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_OK];
   }
 
+  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  // aggiunta dell'orario all'header
+  
+  hs->hdrs[HDR_STRINGS_IDK_CONTENT_TIME_CUSTOM] = "ciao mi chiamo luigi";
+  
+  
+  
+  
+  /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   /* Determine if the URI has any variables and, if so, temporarily remove
       them. */
   vars = strchr(uri, '?');

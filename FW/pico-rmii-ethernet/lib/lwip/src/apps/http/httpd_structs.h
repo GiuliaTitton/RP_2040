@@ -27,7 +27,7 @@ static const char *const g_psHTTPHeaderStrings[] = {
   "Connection: keep-alive\r\n",
   "Connection: keep-alive\r\nContent-Length: ",
   "Server: "HTTPD_SERVER_AGENT"\r\n",
-  "\r\n<html><body><h2>404: The requested file cannot be found.</h2></body></html>\r\n"
+  "\r\n<html><body><h2>404: The requested file cannot be found.</h2></body></html>\r\n",
 #if LWIP_HTTPD_SUPPORT_11_KEEPALIVE
   , "Connection: keep-alive\r\nContent-Length: 77\r\n\r\n<html><body><h2>404: The requested file cannot be found.</h2></body></html>\r\n"
 #endif

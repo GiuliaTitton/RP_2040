@@ -33,7 +33,8 @@
 #include <string.h>
 
 
-
+//ascci to integer
+uint8_t ascii_to_int(uint8_t giannimorandi);
 
 //user declarations
 
@@ -214,32 +215,35 @@ my_timestamp= time_us_64();
 
             printf("%s\n", gps_time_buf);
 
-            //ascii to number
-            time_GPS =  atof(gps_time_buf[0]) * 100000 + 
-                        atof(gps_time_buf[1]) * 10000  +
-                        atof(gps_time_buf[2]) * 1000   +
-                        atof(gps_time_buf[3]) * 100    +
-                        atof(gps_time_buf[4]) * 10     +
-                        atof(gps_time_buf[5])          + //indice 6: punto
-                        atof(gps_time_buf[7]) * 0.1    +
-                        atof(gps_time_buf[8]) * 0.01   +
-                        atof(gps_time_buf[9]) * 0.001  ;
-
             printf("%f\n", time_GPS);
 
+            time_GPS =  (gps_time_buf[0]-48) * 100000 +
+                        (gps_time_buf[1]-48) * 10000  +
+                        (gps_time_buf[2]-48) * 1000   +
+                        (gps_time_buf[3]-48) * 100    +
+                        (gps_time_buf[4]-48) * 10     +
+                        (gps_time_buf[5]-48)          +//indice 6: punto
+                        (gps_time_buf[7]-48) * 0.1    +
+                        (gps_time_buf[8]-48) * 0.01   +
+                        (gps_time_buf[9]-48) * 0.001  ;
+
+
+
+            printf("tempo convertito %i\n", time_GPS);
             for(uint8_t j=0; j<6;j++){
                 gps_datum_buf[j] = nmea_sntnc[j+ index_data_gps];
             }gps_datum_buf[6]='\0';//terminatore di stringa
             
+
             printf("%s\n", gps_datum_buf);
 
-            time_GPS =  atof(gps_datum_buf[0]) * 100000 + 
-                        atof(gps_datum_buf[1]) * 10000  +
-                        atof(gps_datum_buf[2]) * 1000   +
-                        atof(gps_datum_buf[3]) * 100    +
-                        atof(gps_datum_buf[4]) * 10     +
-                        atof(gps_datum_buf[5])          ;
-
+            datum_GPS = (gps_datum_buf[0]-48) * 100000 +
+                        (gps_datum_buf[1]-48) * 10000  +
+                        (gps_datum_buf[2]-48) * 1000   +
+                        (gps_datum_buf[3]-48) * 100    +
+                        (gps_datum_buf[4]-48) * 10     +
+                        (gps_datum_buf[5]-48)          ;
+            printf("data convertita %i\n", datum_GPS);
             printf("%f\n", gps_datum_buf);
             
         }
