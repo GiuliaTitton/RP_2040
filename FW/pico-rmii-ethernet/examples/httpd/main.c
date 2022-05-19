@@ -110,7 +110,7 @@ int main() {
 
     dhcp_start(&netif);
 
-    httpd_init();
+    httpd_init();  // @elia Avvia il server HTTP vedere se si può sostituire o aggiungere il client !
 
 
     // setup core 1 to monitor the RMII ethernet interface
@@ -118,7 +118,15 @@ int main() {
     multicore_launch_core1(netif_rmii_ethernet_loop);
 
     while (1) {
-        tight_loop_contents();
+
+        /*
+        static __always_inline void tight_loop_contents	(void )	
+
+        Np-op function intended to be called by any tight hardware polling loop.
+         Using this ubiquitously makes it much easier to find tight loops, 
+         but also in the future #ifdef-ed support for lockup debugging might be added
+        */
+        tight_loop_contents(); // @elia Capire cos'è !!!
 
 
         led_task();
