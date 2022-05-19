@@ -213,7 +213,8 @@ my_timestamp= time_us_64();
                 gps_time_buf[j] = nmea_sntnc[j + MESSAGE_OFFSET_TIME];
             }gps_time_buf[10]='\0';//terminatore di stringa
 
-            printf("%s\n", gps_time_buf);
+            printf("Stringa originale: %s\n", nmea_sntnc);
+            printf("Stringa gps: %s\n", gps_time_buf);
 
             printf("%f\n", time_GPS);
 
