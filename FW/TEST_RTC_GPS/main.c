@@ -49,12 +49,13 @@ void on_uart_rx();
 static bool valid_sntnc=false;
 static bool end_sentence=false;
 uint8_t string_index = 0;
+uint8_t commasCounter = 0;
 uint8_t nmea_star_index;
 uint8_t nmea_rcvd_sntnc=false;
 uint8_t nmea_sntnc[MAX_NMEA_LEN];
 uint8_t nmea_field =0;
-uint8_t time_GPS;
-uint8_t datum_GPS;
+uint32_t time_GPS;
+uint32_t datum_GPS;
 uint8_t index_data_gps;
 
 
@@ -213,8 +214,8 @@ my_timestamp= time_us_64();
                 gps_time_buf[j] = nmea_sntnc[j + MESSAGE_OFFSET_TIME];
             }gps_time_buf[10]='\0';//terminatore di stringa
 
-            printf("Stringa originale: %s\n", nmea_sntnc);
-            printf("Stringa gps: %s\n", gps_time_buf);
+            printf("Stringa originale: %s", nmea_sntnc);
+           
 
             printf("%f\n", time_GPS);
 
@@ -229,14 +230,14 @@ my_timestamp= time_us_64();
                         (gps_time_buf[9]-48) * 0.001  ;
 
 
-
-            printf("tempo convertito %i\n", time_GPS);
+            printf("Stringa tempo: %s\n", gps_time_buf);
+            printf("Tempo convertito: %i\n", time_GPS);
             for(uint8_t j=0; j<6;j++){
                 gps_datum_buf[j] = nmea_sntnc[j+ index_data_gps];
             }gps_datum_buf[6]='\0';//terminatore di stringa
             
 
-            printf("%s\n", gps_datum_buf);
+            printf("Stringa data: %s\n", gps_datum_buf);
 
             datum_GPS = (gps_datum_buf[0]-48) * 100000 +
                         (gps_datum_buf[1]-48) * 10000  +
@@ -244,8 +245,8 @@ my_timestamp= time_us_64();
                         (gps_datum_buf[3]-48) * 100    +
                         (gps_datum_buf[4]-48) * 10     +
                         (gps_datum_buf[5]-48)          ;
-            printf("data convertita %i\n", datum_GPS);
-            printf("%f\n", gps_datum_buf);
+            printf("data convertita: %i\n\n-------------------------\n", datum_GPS);
+            
             
         }
 
@@ -293,14 +294,12 @@ my_timestamp= time_us_64();
 
 
 void on_uart_rx() {
-
-
     while (uart_is_readable(UART_ID)) {
         
 
 
         uint8_t ch=uart_getc(UART_ID);
-        uint8_t commasCounter = 0;
+        
         
 //la prima frase può arrivare corrotta, iniziando da carattere diverso da $
 //finché non ricevo il primo terminatore \r\n scarto tutti i caratteri. solo dalla seconda considero i dati ok.
@@ -310,6 +309,7 @@ void on_uart_rx() {
                 
                 valid_sntnc=true;
                 string_index=0;
+                commasCounter = 0;
                 nmea_rcvd_sntnc=false;
         }//else first_sntnc=false;
 
@@ -323,28 +323,36 @@ void on_uart_rx() {
                 if('M'!= nmea_sntnc[string_index]) valid_sntnc=false; 
             if(5==string_index)
                 if('C'!= nmea_sntnc[string_index]) valid_sntnc=false;
-
+            
             //track datum
-            if (commasCounter == COMMAS_BEFORE_DATUM)
+            if (commasCounter == COMMAS_BEFORE_DATUM){
                 index_data_gps = string_index;
-
-            if (',' == nmea_sntnc[string_index])
                 commasCounter++;
-
+                
+            }
+            if (',' == nmea_sntnc[string_index]){
+                    commasCounter++;
+            }
+            //printf("passo dopo if virgola: %i\n", commasCounter);    
 
             if('*'==nmea_sntnc[string_index]){
                 nmea_star_index=string_index;
                 
             }
+
+            //printf("passo prima di controllo fine stringa: %i\n", commasCounter);
             if('\n'==nmea_sntnc[string_index]){
                 nmea_rcvd_sntnc=true;
                 
             }
+            //printf("passo dopo controllo fine stringa: %i\n", commasCounter);
 
             string_index++;
+
         }
-        
+        //printf("interno while %i\n", commasCounter);
     }
+    //printf("interno funz: %i\n\n", commasCounter);
 }
 
 

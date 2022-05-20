@@ -133,7 +133,7 @@ int main() {
         if(my_period <=  time_us_64()- my_timestamp){
             my_timestamp=time_us_64();
            // printf("hw:");
-           // printf("%06x\n", netif.hwaddr);
+            printf("%06x\n", netif.hwaddr);
            // printf("%08x\n", netif.ip_addr);
         }
 
