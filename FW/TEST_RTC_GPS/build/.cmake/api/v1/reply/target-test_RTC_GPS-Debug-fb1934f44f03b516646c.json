@@ -62,6 +62,12 @@
 				"parent" : 4
 			},
 			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 74,
+				"parent" : 4
+			},
+			{
 				"command" : 6,
 				"file" : 0,
 				"line" : 55,
@@ -71,29 +77,23 @@
 				"command" : 5,
 				"file" : 4,
 				"line" : 45,
-				"parent" : 6
+				"parent" : 7
 			},
 			{
 				"command" : 4,
 				"file" : 3,
 				"line" : 40,
-				"parent" : 7
+				"parent" : 8
 			},
 			{
 				"file" : 2,
-				"parent" : 8
+				"parent" : 9
 			},
 			{
 				"command" : 3,
 				"file" : 2,
 				"line" : 41,
-				"parent" : 9
-			},
-			{
-				"command" : 3,
-				"file" : 1,
-				"line" : 74,
-				"parent" : 4
+				"parent" : 10
 			},
 			{
 				"command" : 7,
@@ -105,7 +105,7 @@
 				"command" : 8,
 				"file" : 4,
 				"line" : 28,
-				"parent" : 6
+				"parent" : 7
 			},
 			{
 				"command" : 9,
@@ -1427,12 +1427,12 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 10,
-			"id" : "ELF2UF2Build::@6890427a1f51a3e7e1df"
+			"backtrace" : 6,
+			"id" : "bs2_default_padded_checksummed_asm::@bc554eaed616d198a22d"
 		},
 		{
 			"backtrace" : 11,
-			"id" : "bs2_default_padded_checksummed_asm::@bc554eaed616d198a22d"
+			"id" : "ELF2UF2Build::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "test_RTC_GPS::@6890427a1f51a3e7e1df",

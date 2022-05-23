@@ -88,6 +88,14 @@
  * about an unknown extension, make sure to add it (and its doctype) to
  * the 'g_psHTTPHeaders' list.
  */
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
+
+//@matteo modifiche riga 2262
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
+
 #include "lwip/init.h"
 #include "lwip/apps/httpd.h"
 #include "lwip/debug.h"
@@ -2258,6 +2266,16 @@ http_find_file(struct http_state *hs, const char *uri, int is_09)
       if (err == ERR_OK) {
         uri = file_name;
         file = &hs->file_handle;
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
+//@matteo modifiche su index.html
+        printf("\n+++++++++++++++++++++++++\nStringa html:\n");
+        printf("1:%c\n2.%c\n3.%c\n4.%c\n+++++++++++++++++++++++++\n",file->data[(file->len)-4], file->data[(file->len)-3], file->data[(file->len)-2],file->data[(file->len)-1]);
+        (file->data[7])="8"; //trovare il modo di fare questa assegnazione
+        
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
+
         LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Opened.\n"));
         printf("Opened.\n");
 #if LWIP_HTTPD_SSI

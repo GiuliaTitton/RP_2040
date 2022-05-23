@@ -19,8 +19,6 @@
 #include "rmii_ethernet/netif.h"
 
 
-
-
 void netif_link_callback(struct netif *netif)
 {
     //printf("A:netif link status changed %s\n", netif_is_link_up(netif) ? "up" : "down");
@@ -122,7 +120,7 @@ int main() {
     // setup core 1 to monitor the RMII ethernet interface
     // this let's core 0 do other things :)
     multicore_launch_core1(netif_rmii_ethernet_loop);
-
+    
     while (1) {
 
         /*
