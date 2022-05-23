@@ -423,10 +423,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/local/bin/arm-none-eabi-gcc-10.3.1"
 		},
 		{
@@ -1479,7 +1479,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : " /Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/cmsis /Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2040/hardware_regs"
+			"value" : " /Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/cmsis /Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2040/hardware_regs /Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/cmsis /Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2040/hardware_regs"
 		},
 		{
 			"name" : "PICO_DOXYGEN_PATHS",

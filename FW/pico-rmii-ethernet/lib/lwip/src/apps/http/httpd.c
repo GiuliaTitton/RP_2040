@@ -556,6 +556,7 @@ http_write(struct altcp_pcb *pcb, const void *ptr, u16_t *length, u8_t apiflags)
 #endif /* HTTPD_MAX_WRITE_LEN */
   do {
     LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Trying to send %d bytes\n", len));
+    printf("Trying to send %d bytes\n", len);
     err = altcp_write(pcb, ptr, len, apiflags);
     if (err == ERR_MEM) {
       if ((altcp_sndbuf(pcb) == 0) ||
@@ -567,14 +568,17 @@ http_write(struct altcp_pcb *pcb, const void *ptr, u16_t *length, u8_t apiflags)
       }
       LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE,
                   ("Send failed, trying less (%d bytes)\n", len));
+                  printf("Send failed, trying less (%d bytes)\n", len);
     }
   } while ((err == ERR_MEM) && (len > 1));
 
   if (err == ERR_OK) {
     LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Sent %d bytes\n", len));
+    printf("Sent %d bytes\n", len);
     *length = len;
   } else {
     LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Send failed with err %d (\"%s\")\n", err, lwip_strerr(err)));
+    printf("Send failed with err %d (\"%s\")\n", err, lwip_strerr(err));
     *length = 0;
   }
 
@@ -600,6 +604,7 @@ http_close_or_abort_conn(struct altcp_pcb *pcb, struct http_state *hs, u8_t abor
 {
   err_t err;
   LWIP_DEBUGF(HTTPD_DEBUG, ("Closing connection %p\n", (void *)pcb));
+  printf("Closing connection %p\n", (void *)pcb);
 
 #if LWIP_HTTPD_SUPPORT_POST
   if (hs != NULL) {
@@ -632,6 +637,7 @@ http_close_or_abort_conn(struct altcp_pcb *pcb, struct http_state *hs, u8_t abor
   err = altcp_close(pcb);
   if (err != ERR_OK) {
     LWIP_DEBUGF(HTTPD_DEBUG, ("Error %d closing %p\n", err, (void *)pcb));
+    printf("Error %d closing %p\n", err, (void *)pcb);
     /* error closing, try again later in poll */
     altcp_poll(pcb, http_poll, HTTPD_POLL_INTERVAL);
   }
@@ -1122,6 +1128,7 @@ http_check_eof(struct altcp_pcb *pcb, struct http_state *hs)
   if (bytes_left <= 0) {
     /* We reached the end of the file so this request is done. */
     LWIP_DEBUGF(HTTPD_DEBUG, ("End of file.\n"));
+    printf("End of file.\n");
     http_eof(pcb, hs);
     return 0;
   }
@@ -1574,6 +1581,8 @@ http_send(struct altcp_pcb *pcb, struct http_state *hs)
 
   LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_send: pcb=%p hs=%p left=%d\n", (void *)pcb,
               (void *)hs, hs != NULL ? (int)hs->left : 0));
+              printf("http_send: pcb=%p hs=%p left=%d\n", (void *)pcb,
+              (void *)hs, hs != NULL ? (int)hs->left : 0);
 
 #if LWIP_HTTPD_SUPPORT_POST && LWIP_HTTPD_POST_MANUAL_WND
   if (hs->unrecved_bytes != 0) {
@@ -1627,10 +1636,12 @@ http_send(struct altcp_pcb *pcb, struct http_state *hs)
     /* We reached the end of the file so this request is done.
      * This adds the FIN flag right into the last data segment. */
     LWIP_DEBUGF(HTTPD_DEBUG, ("End of file.\n"));
+    printf("End of file.\n");
     http_eof(pcb, hs);
     return 0;
   }
   LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("send_data end.\n"));
+  printf("send_data end.\n");
   return data_to_send;
 }
 
@@ -1980,6 +1991,7 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
 
   if ((hs->handle != NULL) || (hs->file != NULL)) {
     LWIP_DEBUGF(HTTPD_DEBUG, ("Received data while sending a file\n"));
+    printf("Received data while sending a file\n");
     /* already sending a file */
     /* @todo: abort? */
     return ERR_USE;
@@ -1988,15 +2000,17 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
 #if LWIP_HTTPD_SUPPORT_REQUESTLIST
 
   LWIP_DEBUGF(HTTPD_DEBUG, ("Received %"U16_F" bytes\n", p->tot_len));
-
+  printf("Received %"U16_F" bytes\n", p->tot_len);
   /* first check allowed characters in this pbuf? */
 
   /* enqueue the pbuf */
   if (hs->req == NULL) {
     LWIP_DEBUGF(HTTPD_DEBUG, ("First pbuf\n"));
+    printf("First pbuf\n");
     hs->req = p;
   } else {
     LWIP_DEBUGF(HTTPD_DEBUG, ("pbuf enqueued\n"));
+    printf("pbuf enqueued\n");
     pbuf_cat(hs->req, p);
   }
   /* increase pbuf ref counter as it is freed when we return but we want to
@@ -2014,6 +2028,7 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
     data_len = p->len;
     if (p->len != p->tot_len) {
       LWIP_DEBUGF(HTTPD_DEBUG, ("Warning: incomplete header due to chained pbufs\n"));
+      printf("Warning: incomplete header due to chained pbufs\n");
     }
   }
 
@@ -2029,11 +2044,13 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
       char *sp1, *sp2;
       u16_t left_len, uri_len;
       LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("CRLF received, parsing request\n"));
+      printf("CRLF received, parsing request\n");
       /* parse method */
       if (!strncmp(data, "GET ", 4)) {
         sp1 = data + 3;
         /* received GET request */
         LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Received GET request\"\n"));
+        printf("Received GET request\"\n");
 #if LWIP_HTTPD_SUPPORT_POST
       } else if (!strncmp(data, "POST ", 5)) {
         /* store request type */
@@ -2086,6 +2103,8 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
           uri[uri_len] = 0;
           LWIP_DEBUGF(HTTPD_DEBUG, ("Received \"%s\" request for URI: \"%s\"\n",
                                     data, uri));
+                                    printf("Received \"%s\" request for URI: \"%s\"\n",
+                                    data, uri);
 #if LWIP_HTTPD_SUPPORT_POST
           if (is_post) {
 #if LWIP_HTTPD_SUPPORT_REQUESTLIST
@@ -2129,6 +2148,7 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
 badrequest:
 #endif /* LWIP_HTTPD_SUPPORT_POST */
     LWIP_DEBUGF(HTTPD_DEBUG, ("bad request\n"));
+    printf("bad request\n");
     /* could not parse request */
     return http_find_error_file(hs, 400);
   }
@@ -2233,11 +2253,13 @@ http_find_file(struct http_state *hs, const char *uri, int is_09)
         file_name = httpd_default_filenames[loop].name;
       }
       LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Looking for %s...\n", file_name));
+      printf("Looking for %s...\n", file_name);
       err = fs_open(&hs->file_handle, file_name);
       if (err == ERR_OK) {
         uri = file_name;
         file = &hs->file_handle;
         LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Opened.\n"));
+        printf("Opened.\n");
 #if LWIP_HTTPD_SSI
         tag_check = httpd_default_filenames[loop].shtml;
 #endif /* LWIP_HTTPD_SSI */
@@ -2275,6 +2297,7 @@ http_find_file(struct http_state *hs, const char *uri, int is_09)
 #endif /* LWIP_HTTPD_CGI */
 
     LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("Opening %s\n", uri));
+    printf("Opening %s\n", uri);
 
     err = fs_open(&hs->file_handle, uri);
     if (err == ERR_OK) {
@@ -2439,7 +2462,7 @@ http_err(void *arg, err_t err)
   LWIP_UNUSED_ARG(err);
 
   LWIP_DEBUGF(HTTPD_DEBUG, ("http_err: %s", lwip_strerr(err)));
-
+  printf("http_err: %s", lwip_strerr(err));
   if (hs != NULL) {
     http_state_free(hs);
   }
@@ -2455,6 +2478,7 @@ http_sent(void *arg, struct altcp_pcb *pcb, u16_t len)
   struct http_state *hs = (struct http_state *)arg;
 
   LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_sent %p\n", (void *)pcb));
+  printf("http_sent %p\n", (void *)pcb);
 
   LWIP_UNUSED_ARG(len);
 
@@ -2482,11 +2506,14 @@ http_poll(void *arg, struct altcp_pcb *pcb)
   struct http_state *hs = (struct http_state *)arg;
   LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_poll: pcb=%p hs=%p pcb_state=%s\n",
               (void *)pcb, (void *)hs, tcp_debug_state_str(altcp_dbg_get_tcp_state(pcb))));
+              printf("http_poll: pcb=%p hs=%p pcb_state=da sistemare\n",
+              (void *)pcb, (void *)hs);
 
   if (hs == NULL) {
     err_t closed;
     /* arg is null, close. */
     LWIP_DEBUGF(HTTPD_DEBUG, ("http_poll: arg is NULL, close\n"));
+    printf("http_poll: arg is NULL, close\n");
     closed = http_close_conn(pcb, NULL);
     LWIP_UNUSED_ARG(closed);
 #if LWIP_HTTPD_ABORT_ON_CLOSE_MEM_ERROR
@@ -2500,6 +2527,7 @@ http_poll(void *arg, struct altcp_pcb *pcb)
     hs->retries++;
     if (hs->retries == HTTPD_MAX_RETRIES) {
       LWIP_DEBUGF(HTTPD_DEBUG, ("http_poll: too many retries, close\n"));
+      printf("http_poll: too many retries, close\n");
       http_close_conn(pcb, hs);
       return ERR_OK;
     }
@@ -2509,9 +2537,11 @@ http_poll(void *arg, struct altcp_pcb *pcb)
      * cause the connection to close immediately. */
     if (hs->handle) {
       LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_poll: try to send more data\n"));
+      printf("http_poll: try to send more data\n");
       if (http_send(pcb, hs)) {
         /* If we wrote anything to be sent, go ahead and send it now. */
         LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("tcp_output\n"));
+        printf("tcp_output\n");
         altcp_output(pcb);
       }
     }
@@ -2530,6 +2560,8 @@ http_recv(void *arg, struct altcp_pcb *pcb, struct pbuf *p, err_t err)
   struct http_state *hs = (struct http_state *)arg;
   LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_recv: pcb=%p pbuf=%p err=%s\n", (void *)pcb,
               (void *)p, lwip_strerr(err)));
+              printf("http_recv: pcb=%p pbuf=%p err=%s\n", (void *)pcb,
+              (void *)p, lwip_strerr(err));
 
   if ((err != ERR_OK) || (p == NULL) || (hs == NULL)) {
     /* error or closed by other side? */
@@ -2541,6 +2573,7 @@ http_recv(void *arg, struct altcp_pcb *pcb, struct pbuf *p, err_t err)
     if (hs == NULL) {
       /* this should not happen, only to be robust */
       LWIP_DEBUGF(HTTPD_DEBUG, ("Error, http_recv: hs is NULL, close\n"));
+      printf("Error, http_recv: hs is NULL, close\n");
     }
     http_close_conn(pcb, hs);
     return ERR_OK;
@@ -2591,6 +2624,7 @@ http_recv(void *arg, struct altcp_pcb *pcb, struct pbuf *p, err_t err)
 #endif /* LWIP_HTTPD_SUPPORT_POST */
         {
           LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_recv: data %p len %"S32_F"\n", (const void *)hs->file, hs->left));
+          printf("http_recv: data %p len %"S32_F"\n", (const void *)hs->file, hs->left);
           http_send(pcb, hs);
         }
       } else if (parsed == ERR_ARG) {
@@ -2599,6 +2633,7 @@ http_recv(void *arg, struct altcp_pcb *pcb, struct pbuf *p, err_t err)
       }
     } else {
       LWIP_DEBUGF(HTTPD_DEBUG, ("http_recv: already sending data\n"));
+      printf("http_recv: already sending data\n");
       /* already sending but still receiving data, we might want to RST here? */
       pbuf_free(p);
     }
@@ -2616,6 +2651,7 @@ http_accept(void *arg, struct altcp_pcb *pcb, err_t err)
   LWIP_UNUSED_ARG(err);
   LWIP_UNUSED_ARG(arg);
   LWIP_DEBUGF(HTTPD_DEBUG, ("http_accept %p / %p\n", (void *)pcb, arg));
+  printf("http_accept %p / %p\n", (void *)pcb, arg);
 
   if ((err != ERR_OK) || (pcb == NULL)) {
     return ERR_VAL;
@@ -2629,6 +2665,7 @@ http_accept(void *arg, struct altcp_pcb *pcb, err_t err)
   hs = http_state_alloc();
   if (hs == NULL) {
     LWIP_DEBUGF(HTTPD_DEBUG, ("http_accept: Out of memory, RST\n"));
+    printf("http_accept: Out of memory, RST\n");
     return ERR_MEM;
   }
   hs->pcb = pcb;
@@ -2679,6 +2716,7 @@ httpd_init(void)
 #endif
 #endif
   LWIP_DEBUGF(HTTPD_DEBUG, ("httpd_init\n"));
+  printf("httpd_init\n");
 
   /* LWIP_ASSERT_CORE_LOCKED(); is checked by tcp_new() */
 

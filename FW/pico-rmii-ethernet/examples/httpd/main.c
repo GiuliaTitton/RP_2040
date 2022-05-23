@@ -20,12 +20,15 @@
 
 void netif_link_callback(struct netif *netif)
 {
-    printf("A:netif link status changed %s\n", netif_is_link_up(netif) ? "up" : "down");
+    //printf("A:netif link status changed %s\n", netif_is_link_up(netif) ? "up" : "down");
+    asm("nop");
 }
+
 
 void netif_status_callback(struct netif *netif)
 {
-    printf("netif status changed %s\n", ip4addr_ntoa(netif_ip4_addr(netif)));
+    //printf("netif status changed %s\n", ip4addr_ntoa(netif_ip4_addr(netif)));
+   //printf("lol");
 }
 
 
@@ -133,7 +136,7 @@ int main() {
         if(my_period <=  time_us_64()- my_timestamp){
             my_timestamp=time_us_64();
            // printf("hw:");
-            printf("%06x\n", netif.hwaddr);
+            //printf("%06x\n", netif.hwaddr);
            // printf("%08x\n", netif.ip_addr);
         }
 
