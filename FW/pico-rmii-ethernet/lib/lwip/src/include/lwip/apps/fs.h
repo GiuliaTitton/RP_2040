@@ -63,7 +63,8 @@ typedef void fs_file_extension;
 #endif
 
 struct fs_file {
-  const char *data;
+  //const char *data; //mod. andrea
+  char* data;
   int len;
   int index;
   /* pextension is free for implementations to hold private (extensional)

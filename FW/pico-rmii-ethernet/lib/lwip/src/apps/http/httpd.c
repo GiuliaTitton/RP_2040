@@ -2134,7 +2134,17 @@ http_parse_request(struct pbuf *inp, struct http_state *hs, struct altcp_pcb *pc
           } else
 #endif /* LWIP_HTTPD_SUPPORT_POST */
           {
-            return http_find_file(hs, uri, is_09);
+            return http_find_file(hs, uri, is_09);//mod. andrea
+           /* err_t ret = http_find_file(hs, uri, is_09);
+            if(ERR_OK == ret){
+              //se find file è ok, copio array const hs->data e lo modifico dove serve
+              char mybuf [sizeof(hs->file_handle.data)];
+              for(int i=0; i<sizeof(hs->file_handle.data); i++){
+                mybuf[i]= hs->file_handle.data[i];
+              }
+
+            }
+            return ret;*/
           }
         }
       } else {
@@ -2269,10 +2279,10 @@ http_find_file(struct http_state *hs, const char *uri, int is_09)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
 //@matteo modifiche su index.html
-        printf("\n+++++++++++++++++++++++++\nStringa html:\n");
+/*        printf("\n+++++++++++++++++++++++++\nStringa html:\n");
         printf("1:%c\n2.%c\n3.%c\n4.%c\n+++++++++++++++++++++++++\n",file->data[(file->len)-4], file->data[(file->len)-3], file->data[(file->len)-2],file->data[(file->len)-1]);
         (file->data[7])="8"; //trovare il modo di fare questa assegnazione
-        
+   */     
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
 
@@ -2568,6 +2578,17 @@ http_poll(void *arg, struct altcp_pcb *pcb)
   return ERR_OK;
 }
 
+
+
+/************************
+ * da altcp_recv callback, le fuunzioni sono così annidate:
+ * http_recv
+ *    http_parse_request
+ *       http_find_file
+ *          fs_open
+ *          fs_init_file
+ * /
+
 /**
  * Data has been received on this pcb.
  * For HTTP 1.0, this should normally only happen once (if the request fits in one packet).
@@ -2643,6 +2664,16 @@ http_recv(void *arg, struct altcp_pcb *pcb, struct pbuf *p, err_t err)
         {
           LWIP_DEBUGF(HTTPD_DEBUG | LWIP_DBG_TRACE, ("http_recv: data %p len %"S32_F"\n", (const void *)hs->file, hs->left));
           printf("http_recv: data %p len %"S32_F"\n", (const void *)hs->file, hs->left);
+          //qui ho parsato il file da spedire. prima di spedire lo modifico?
+
+          //for(int i=0; i<sizeof(hs->file_handle.data); i++)
+          //mybuf[i]= hs->file_handle.data[i];
+          hs->file_handle.data[hs->file_handle.len-1] = '4';
+          hs->file_handle.data[hs->file_handle.len-2] = '7';
+          hs->file_handle.data[hs->file_handle.len-3] = '5';
+          hs->file_handle.data[hs->file_handle.len-4] = '3';
+          hs->file_handle.data[hs->file_handle.len-5] = '1';
+          hs->file_handle.data[hs->file_handle.len-6] = '4';
           http_send(pcb, hs);
         }
       } else if (parsed == ERR_ARG) {

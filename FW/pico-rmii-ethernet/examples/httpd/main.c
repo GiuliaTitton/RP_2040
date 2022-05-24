@@ -14,6 +14,8 @@
 #include "lwip/dhcp.h"
 #include "lwip/init.h"
 
+char mybuf [1460]; //massima dimensione payload http
+  
 #include "lwip/apps/httpd.h"
 
 #include "rmii_ethernet/netif.h"
@@ -42,6 +44,7 @@ void led_task(void);
 uint64_t my_period=1000*1000, my_timestamp;
  
 
+  
 
 
 
