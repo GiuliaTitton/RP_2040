@@ -2668,12 +2668,21 @@ http_recv(void *arg, struct altcp_pcb *pcb, struct pbuf *p, err_t err)
 
           //for(int i=0; i<sizeof(hs->file_handle.data); i++)
           //mybuf[i]= hs->file_handle.data[i];
-          hs->file_handle.data[hs->file_handle.len-1] = '4';
+        struct fs_file editedValues;
+        editedValues.data = hs->file_handle.data;
+        printf("pre-modifica: %c\n", hs->file_handle.data[hs->file_handle.len-1]);
+        editedValues.data[(editedValues.len)-1] = '9';
+        printf("edited value: %c\n", editedValues.data[(editedValues.len)-1]);
+        
+        /*  hs->file_handle.data[hs->file_handle.len-1] = '6';
           hs->file_handle.data[hs->file_handle.len-2] = '7';
           hs->file_handle.data[hs->file_handle.len-3] = '5';
           hs->file_handle.data[hs->file_handle.len-4] = '3';
           hs->file_handle.data[hs->file_handle.len-5] = '1';
-          hs->file_handle.data[hs->file_handle.len-6] = '4';
+          hs->file_handle.data[hs->file_handle.len-6] = '4';*/
+          
+          hs->file_handle.data = editedValues.data;
+          //printf("post-modifica: %c\n", hs->file_handle.data[hs->file_handle.len-1]);
           http_send(pcb, hs);
         }
       } else if (parsed == ERR_ARG) {
