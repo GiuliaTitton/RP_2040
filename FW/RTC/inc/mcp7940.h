@@ -37,12 +37,12 @@
 #define MCP7940_ALM0_MTH_REG 0x0F
 
 //registri allarme 1
-#define MCP7940_ALM0_SECS_REG 0x11    //puntatore registro secondi ALLARME 1
-#define MCP7940_ALM0_MINS_REG 0x12
-#define MCP7940_ALM0_HOURS_REG 0x13
-#define MCP7940_ALM0_DAY_REG 0x14
-#define MCP7940_ALM0_DATE_REG 0x15
-#define MCP7940_ALM0_MTH_REG 0x16
+#define MCP7940_ALM1_SECS_REG 0x11    //puntatore registro secondi ALLARME 1
+#define MCP7940_ALM1_MINS_REG 0x12
+#define MCP7940_ALM1_HOURS_REG 0x13
+#define MCP7940_ALM1_DAY_REG 0x14
+#define MCP7940_ALM1_DATE_REG 0x15
+#define MCP7940_ALM1_MTH_REG 0x16
 
 //maschere abilitazione allarmi
 #define MCP7940_ALM0_EN 0x10

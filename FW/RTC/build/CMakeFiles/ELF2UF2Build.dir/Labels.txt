@@ -1,0 +1,13 @@
+# Target labels
+ ELF2UF2Build
+# Source files and their labels
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/CMakeFiles/ELF2UF2Build
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/CMakeFiles/ELF2UF2Build.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/CMakeFiles/ELF2UF2Build-complete.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule

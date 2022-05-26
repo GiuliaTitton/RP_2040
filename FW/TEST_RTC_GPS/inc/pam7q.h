@@ -22,10 +22,8 @@
 
 #define GPS_ENABLED 1
 
-bool time_GPS_valid = false;
-bool data_GPS_valid = false;
-void on_uart_rx();
 
-uint8_t getTime(uint8_t* data);
-uint8_t getTime(uint8_t* gps_datum_buf);
+void on_uart_rx();
+uint32_t getTime(uint8_t* gps_time_buf, uint8_t offset);
+uint32_t getData(uint8_t* gps_datum_buf, uint8_t offset);
 #endif

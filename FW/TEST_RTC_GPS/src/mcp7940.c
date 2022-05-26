@@ -138,14 +138,14 @@ const char* getDayName(uint8_t day) {
    return "Error";
 }
 
-uint8_t mcp7940_get_time(uint8_t* buf){
+uint32_t mcp7940_get_time(uint8_t* buf){
     return  BCD_to_num(buf[0], 4,3)         +
             BCD_to_num(buf[1], 4,3) *   100 +
             BCD_to_num(buf[2], 4,3) * 10000 ;
 }
 
-uint8_t mcp7940_get_data(uint8_t* buf){
-    return  BCD_to_num(buf[0], 4,3)         +
-            BCD_to_num(buf[1], 4,3) *   100 +
-            BCD_to_num(buf[2], 4,3) * 10000 ;
+uint32_t mcp7940_get_data(uint8_t* buf, uint8_t offset){
+    return  BCD_to_num(buf[(2 + offset)], 4,3)         +
+            BCD_to_num(buf[(1 + offset)], 4,3) *   100 +
+            BCD_to_num(buf[(0 + offset)], 4,3) * 10000 ;
 }

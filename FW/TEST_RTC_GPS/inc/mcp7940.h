@@ -37,12 +37,12 @@
 #define MCP7940_ALM0_MTH_REG 0x0F
 
 //registri allarme 1
-#define MCP7940_ALM0_SECS_REG 0x11    //puntatore registro secondi ALLARME 1
-#define MCP7940_ALM0_MINS_REG 0x12
-#define MCP7940_ALM0_HOURS_REG 0x13
-#define MCP7940_ALM0_DAY_REG 0x14
-#define MCP7940_ALM0_DATE_REG 0x15
-#define MCP7940_ALM0_MTH_REG 0x16
+#define MCP7940_ALM1_SECS_REG 0x11    //puntatore registro secondi ALLARME 1
+#define MCP7940_ALM1_MINS_REG 0x12
+#define MCP7940_ALM1_HOURS_REG 0x13
+#define MCP7940_ALM1_DAY_REG 0x14
+#define MCP7940_ALM1_DATE_REG 0x15
+#define MCP7940_ALM1_MTH_REG 0x16
 
 //maschere abilitazione allarmi
 #define MCP7940_ALM0_EN 0x10
@@ -75,11 +75,11 @@ uint8_t num_to_BCD(uint8_t value, uint8_t unitBits);
 uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits);
 uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits);
 void mcp7940_set_all_data(uint8_t secs, uint8_t min, uint8_t hour, uint8_t day, uint8_t date, uint8_t _month, uint8_t _year);
-void mcp7940_set_time(uint8_t secs, uint8_t min, uint8_t hour)
+void mcp7940_set_time(uint8_t secs, uint8_t min, uint8_t hour);
 
 const char* getDayName(uint8_t day);
-uint8_t mcp7940_get_time(uint8_t* buf);
-uint8_t mcp7940_get_data(uint8_t* buf)
+uint32_t mcp7940_get_time(uint8_t* buf);
+uint32_t mcp7940_get_data(uint8_t* buf, uint8_t offset);
 
 //__MCP7940_H__
 #endif 

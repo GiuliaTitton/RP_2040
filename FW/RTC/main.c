@@ -72,6 +72,7 @@ int main() {
     mcp_data_buf[6]= num_to_BCD(22,4);//year
 
     mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, sizeof(mcp_data_buf));
+    mcp7940_write_single_register(MCP7940_SECS_REG,mcp_data_buf[0] | 0x80);
 
 my_timestamp= time_us_64();
 

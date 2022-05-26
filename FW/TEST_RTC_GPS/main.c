@@ -29,6 +29,8 @@
 
 
 
+bool time_GPS_valid = false;
+bool data_GPS_valid = false;
 static bool valid_sntnc=false;
 static bool end_sentence=false;
 uint8_t string_index = 0;
@@ -40,8 +42,8 @@ uint8_t nmea_field =0;
 uint32_t time_GPS;
 uint32_t datum_GPS;
 uint8_t index_data_gps;
-uint8_t time_RTC;
-uint8_t datum_RTC;
+uint32_t time_RTC;
+uint32_t datum_RTC;
 
 int main() {
 /*************************************/
@@ -124,9 +126,27 @@ int main() {
     uint8_t mcp_data_buf[MCP7940_DATA_NBYTES];
     uint8_t _second, _minute, _hour, _day, _weekday, _month, _year;  
     uint16_t current_year;
-
+    uint64_t my_timestamp = time_us_64();
     uint64_t timestamp_RTC = time_us_64();
-    mcp7940_set_all_data(15, 3, 20, 2, 24, 7, 21);
+
+
+    mcp_data_buf[0]= num_to_BCD(10,4); //sec
+    mcp_data_buf[1]= num_to_BCD(43,4);//min
+    mcp_data_buf[2]= mcp7940_add_hour_format(false, num_to_BCD(16,4));//hour + f. 24h
+
+    mcp_data_buf[3]= num_to_BCD(5,4);//day
+    mcp_data_buf[4]= num_to_BCD(3,4);//date
+    mcp_data_buf[5]= num_to_BCD(5,4);//month
+    mcp_data_buf[6]= num_to_BCD(22,4);//year
+
+    mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, sizeof(mcp_data_buf));
+    mcp7940_write_single_register(MCP7940_SECS_REG,mcp_data_buf[0] | 0x80);
+
+
+
+
+
+
 #endif   
     bool led_val=0;
 
@@ -161,8 +181,8 @@ int main() {
            
             //time acquisition
             if(nmea_sntnc[MESSAGE_OFFSET_TIME] != ','){
-                printf("Tempo acquisito: %i", time_GPS);
-                time_GPS = getTime(nmea_sntnc[MESSAGE_OFFSET_TIME]);
+                printf("Tempo acquisito: %i\n", time_GPS);
+                time_GPS = getTime(nmea_sntnc, MESSAGE_OFFSET_TIME);
                 time_GPS_valid = true;
             }else{
                 printf("Tempo non acquisito!\n");
@@ -171,7 +191,7 @@ int main() {
             
             //data acquisition
             if(nmea_sntnc[index_data_gps] != ','){
-                datum_GPS = getTime(nmea_sntnc[index_data_gps]);
+                datum_GPS = getTime(nmea_sntnc, index_data_gps);
                 printf("Data acquisita: %i\n", datum_GPS);
                 data_GPS_valid = true;
             }else{
@@ -183,13 +203,13 @@ int main() {
         }
     #endif
 
-    #if MCP7940_ENABLE & GPS_ENABLED
+    #if MCP7940_ENABLE
         //RTC SECTION
         if(ONE_SECOND <= time_us_64() - timestamp_RTC){ // ogni secondo (10^6 us..)
             timestamp_RTC = time_us_64();
             mcp7940_get_all_data(mcp_data_buf, MCP7940_SECS_REG, MCP7940_DATA_NBYTES);
             time_RTC = mcp7940_get_time(mcp_data_buf);
-            datum_RTC = mcp7940_get_data(mcp_data_buf[4]);
+            datum_RTC = mcp7940_get_data(mcp_data_buf, 4);
             
             _weekday = mcp_data_buf[3]; //in BCD
             _weekday = (_weekday & 0x07);
@@ -198,16 +218,49 @@ int main() {
             _year = BCD_to_num(mcp_data_buf[6], 4, 4);
             current_year = START_MILLENNIUM  + _year; //100*_century
             
-            printf("Orario: %i:%i:%i\nData: %s %i/%i/%i\n", _hour, _minute, _second, getDayName(_weekday), _day, _month, current_year);
+            printf("Orario: %i\nData: %s %i\n", time_RTC, getDayName(_weekday), datum_RTC);
             
             
         }
 
+        if(0){ // ogni secondo (10^6 us..)
+        
+
+            my_timestamp = time_us_64();
+            mcp7940_get_all_data(mcp_data_buf, MCP7940_SECS_REG, MCP7940_DATA_NBYTES);
+            
+
+            _second = BCD_to_num(mcp_data_buf[0], 4,3);
+
+            _minute = BCD_to_num(mcp_data_buf[1], 4,3);
+
+            _hour = BCD_to_num(mcp_data_buf[2], 4,3);
+
+            _weekday = mcp_data_buf[3]; //in BCD
+            _weekday = (_weekday & 0x07);
+            //today = _weekday;
+
+            _day = BCD_to_num(mcp_data_buf[4], 4, 2);
+
+            _month = BCD_to_num(mcp_data_buf[5], 4, 1);     
+
+            
+            _year = BCD_to_num(mcp_data_buf[6], 4, 4);
+
+            current_year = START_MILLENNIUM  + _year; //100*_century
+            
+            mcp7940_write_single_register(MCP7940_YEAR_REG,num_to_BCD(22,4));
+            printf("Orario%i:%i:%i\nData:%i/%i/%i\n", _hour, _minute, _second, _weekday, _day, _month, current_year);
+        }
+    #endif
+    #if MCP7940_ENABLE & GPS_ENABLED
         //RTC TIME CORRECTION WITH GPS
         if(TEN_SECONDS <= time_us_64() - timestamp_correction_RTC){
+            printf("Pre-Correzione tempo\n");
             timestamp_correction_RTC = time_us_64();
             
             if((time_RTC != time_GPS) & time_GPS_valid & data_GPS_valid){
+                printf("Correzione tempo\n");
                 if(datum_RTC != datum_GPS)
                     mcp7940_set_all_data(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000),1,datum_GPS/10000,(datum_GPS/100)%100,datum_GPS%100);
                 else
@@ -234,13 +287,15 @@ void on_uart_rx() {
 //la prima frase può arrivare corrotta, iniziando da carattere diverso da $
 //finché non ricevo il primo terminatore \r\n scarto tutti i caratteri. solo dalla seconda considero i dati ok.
         if(!valid_sntnc)
-            if(ch=='$'){
+         asm("nop");
+        if(ch=='$'){
+                
                 valid_sntnc=true;
                 string_index=0;
                 commasCounter = 0;
                 nmea_rcvd_sntnc=false;
-        }//else first_sntnc=false;
-
+        
+        }
         if(valid_sntnc){
 
             nmea_sntnc[string_index] = ch;
@@ -286,5 +341,7 @@ void on_uart_rx() {
 
 
 void gpio_callback(uint gpio, uint32_t events) {
+
     asm("nop");
+
 }
