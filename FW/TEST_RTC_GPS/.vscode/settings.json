@@ -1,4 +1,7 @@
 {
     "editor.accessibilityPageSize": 12,
-    "editor.fontSize": 12
+    "editor.fontSize": 12,
+    "files.associations": {
+        "string.h": "c"
+    }
 }

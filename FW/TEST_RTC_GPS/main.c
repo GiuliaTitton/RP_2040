@@ -1,8 +1,38 @@
 /**
- * 
- *
- * 
- */
+* FILENAME  :                         main.c             
+* PROJECT   :   PSE_2021_2022_SERVER_NTP_LAN
+* FOLDER    :               /FW/TEST_RTC_GPS
+*
+* DESCRIPTION :
+*       Il programma acquisisce l'orario di GPS e RTC e ne confronta i valori.
+*       In caso di valori differenti, si reimposta l'orario del RTC con i 
+*       valori acquisiti via GPS. Il programma si suddivide in:
+*       - setup led GPIO per feedback visivo;
+*       - setup interrupt e interfaccia uart GPS;
+*       - lampeggio led;
+*       - setup I2C e orario iniziale RTC;
+*       - impostazione allarme;
+*       - loop continuo composto da:
+*           - lampeggio led;
+*           - acquisizione dati GPS;
+*           - acquisizione dati RTC;
+*           - confronto dati GPS e RTC;
+*       - controllo messaggi in ricezione GPS
+*
+* NOTES :
+*       Allarme non impostato. L'allarme può essere 
+*       utilizzato per il confronto dei dati acquisiti.
+*
+*
+* AUTHORS :    
+*       PAGANIN ANDREA, PASQUINI GIUSEPPE, TRENTI ELIA, TITTON GIULIA, AMORTH MATTEO;
+*
+* CHANGES :
+*
+* REF NO  VERSION DATE    WHO     DETAIL
+* F26/05  A.00.01 26May22 M. A.   Aggiunte descrizioni funzioni e intestazione
+*
+* */
 
 #include "pico/stdlib.h"
 #include <stdio.h>
@@ -11,57 +41,48 @@
 #include "hardware/uart.h"
 #include "hardware/irq.h"
 
-
-
-//rtc constant
+//loop constants
 #define ONE_SECOND   1000000
 #define TEN_SECONDS 10000000
-
+#define SET_ALLARM         0
 
 //user inclusions
-
 #include "mcp7940.h"
 #include "pam7q.h"
 #include <string.h>
 
-//static int chars_rxed = 0;
-
-
-
-
-bool time_GPS_valid = false;
-bool data_GPS_valid = false;
-static bool valid_sntnc=false;
-static bool end_sentence=false;
+//var
 uint8_t string_index = 0;
 uint8_t commasCounter = 0;
 uint8_t nmea_star_index;
 uint8_t nmea_rcvd_sntnc=false;
 uint8_t nmea_sntnc[MAX_NMEA_LEN];
 uint8_t nmea_field =0;
-uint32_t time_GPS;
-uint32_t datum_GPS;
 uint8_t index_data_gps;
-uint32_t time_RTC;
-uint32_t datum_RTC;
 
 int main() {
 /*************************************/
-/*GPIO*/
+    /*GPIO*/
     const uint LED_PIN = PICO_DEFAULT_LED_PIN;
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
     gpio_put(LED_PIN, 0);  //led off
 /*************************************/
 
+#if GPS_ENABLE
+/***********************************/
+/*var*/
+    uint32_t time_GPS;
+    uint32_t datum_GPS;
+    bool time_GPS_valid = false;
+    bool data_GPS_valid = false;
 
 /*PPS IRQ*/
     void gpio_callback(uint gpio, uint32_t events); //callback  declaration
 
-    gpio_set_irq_enabled_with_callback(2, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
-/***********************************/
-#if GPS_ENABLED
-    /*UART*/
+    gpio_set_irq_enabled_with_callback(2, GPIO_IRQ_EDGE_RISE, true, &gpio_callback);
+
+ /*UART*/
 
     // Set up our UART with a basic baud rate.
     uart_init(UART_ID, BAUD_RATE);
@@ -97,14 +118,12 @@ int main() {
     // Now enable the UART to send interrupts - RX only
     uart_set_irq_enables(UART_ID, true, false);
 
-
 #endif
-/*/////////////////////////////////////*/
 
     stdio_init_all();
 
-/*****************************************************/
-    //led lightning
+/*************************************/
+    //led flashing
     for(uint8_t i=0; i<4;i++){
         gpio_put(LED_PIN, 1);  //led on
         sleep_ms(10);
@@ -114,21 +133,16 @@ int main() {
 /*************************************/
 #if MCP7940_ENABLE
 /*I2C INIT*/
-
     i2c_init(i2c0, 10 * 1000);
-    gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
-  //  gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
-  //  gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
-
-/***************************************/
+    gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C); //  gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
+    gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C); //  gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
+  
 /*mcp init*/
     uint8_t mcp_data_buf[MCP7940_DATA_NBYTES];
-    uint8_t _second, _minute, _hour, _day, _weekday, _month, _year;  
-    uint16_t current_year;
-    uint64_t my_timestamp = time_us_64();
     uint64_t timestamp_RTC = time_us_64();
-
+    uint64_t timestamp_correction_RTC = time_us_64();
+    uint32_t time_RTC;
+    uint32_t datum_RTC;
 
     mcp_data_buf[0]= num_to_BCD(10,4); //sec
     mcp_data_buf[1]= num_to_BCD(43,4);//min
@@ -142,23 +156,17 @@ int main() {
     mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, sizeof(mcp_data_buf));
     mcp7940_write_single_register(MCP7940_SECS_REG,mcp_data_buf[0] | 0x80);
 
-
-
-
-
-
 #endif   
     bool led_val=0;
-
-    
     uint64_t led_dbg_period=200;
     uint64_t led_timestamp = time_us_64();
-    uint64_t timestamp_correction_RTC = time_us_64();
-
+    
    
 
 /***************************************************/
-
+#if SET_ALLARM
+    /
+#endif
 
     while (true) {
         if(led_dbg_period <=  time_us_64()- led_timestamp){ //LED TASK
@@ -173,8 +181,8 @@ int main() {
                     
             }
 
-        //GPS SECTION
-    #if GPS_ENABLED
+    //GPS SECTION
+    #if GPS_ENABLE
         if(nmea_rcvd_sntnc){
             nmea_rcvd_sntnc=false;
             printf("Stringa originale: %s", nmea_sntnc);
@@ -191,78 +199,40 @@ int main() {
             
             //data acquisition
             if(nmea_sntnc[index_data_gps] != ','){
-                datum_GPS = getTime(nmea_sntnc, index_data_gps);
+                datum_GPS = getData(nmea_sntnc, index_data_gps);
                 printf("Data acquisita: %i\n", datum_GPS);
                 data_GPS_valid = true;
             }else{
                 printf("Data non acquisita!\n");
                 data_GPS_valid = false;
-            }
-            
-            
+            }   
         }
     #endif
 
+    //RTC SECTION
     #if MCP7940_ENABLE
-        //RTC SECTION
-        if(ONE_SECOND <= time_us_64() - timestamp_RTC){ // ogni secondo (10^6 us..)
+        if(ONE_SECOND <= time_us_64() - timestamp_RTC){
             timestamp_RTC = time_us_64();
+
             mcp7940_get_all_data(mcp_data_buf, MCP7940_SECS_REG, MCP7940_DATA_NBYTES);
             time_RTC = mcp7940_get_time(mcp_data_buf);
             datum_RTC = mcp7940_get_data(mcp_data_buf, 4);
             
-            _weekday = mcp_data_buf[3]; //in BCD
-            _weekday = (_weekday & 0x07);
-            _day = BCD_to_num(mcp_data_buf[4], 4, 2);
-            _month = BCD_to_num(mcp_data_buf[5], 4, 1);     
-            _year = BCD_to_num(mcp_data_buf[6], 4, 4);
-            current_year = START_MILLENNIUM  + _year; //100*_century
-            
-            printf("Orario: %i\nData: %s %i\n", time_RTC, getDayName(_weekday), datum_RTC);
-            
-            
-        }
-
-        if(0){ // ogni secondo (10^6 us..)
-        
-
-            my_timestamp = time_us_64();
-            mcp7940_get_all_data(mcp_data_buf, MCP7940_SECS_REG, MCP7940_DATA_NBYTES);
-            
-
-            _second = BCD_to_num(mcp_data_buf[0], 4,3);
-
-            _minute = BCD_to_num(mcp_data_buf[1], 4,3);
-
-            _hour = BCD_to_num(mcp_data_buf[2], 4,3);
-
-            _weekday = mcp_data_buf[3]; //in BCD
-            _weekday = (_weekday & 0x07);
-            //today = _weekday;
-
-            _day = BCD_to_num(mcp_data_buf[4], 4, 2);
-
-            _month = BCD_to_num(mcp_data_buf[5], 4, 1);     
-
-            
-            _year = BCD_to_num(mcp_data_buf[6], 4, 4);
-
-            current_year = START_MILLENNIUM  + _year; //100*_century
-            
-            mcp7940_write_single_register(MCP7940_YEAR_REG,num_to_BCD(22,4));
-            printf("Orario%i:%i:%i\nData:%i/%i/%i\n", _hour, _minute, _second, _weekday, _day, _month, current_year);
+            printf("\nOrario RTC: %i\nData RTC: %s %i\n\n", time_RTC, getDayName(mcp_data_buf[3] & 0x07), datum_RTC);
         }
     #endif
-    #if MCP7940_ENABLE & GPS_ENABLED
-        //RTC TIME CORRECTION WITH GPS
+
+    //RTC TIME CORRECTION WITH GPS
+    #if MCP7940_ENABLE & GPS_ENABLE
         if(TEN_SECONDS <= time_us_64() - timestamp_correction_RTC){
             printf("Pre-Correzione tempo\n");
             timestamp_correction_RTC = time_us_64();
             
             if((time_RTC != time_GPS) & time_GPS_valid & data_GPS_valid){
-                printf("Correzione tempo\n");
+                printf("\n\n\n-----Correzione tempo-----\n\n\n");
                 if(datum_RTC != datum_GPS)
-                    mcp7940_set_all_data(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000),1,datum_GPS/10000,(datum_GPS/100)%100,datum_GPS%100);
+                    mcp7940_set_all_data(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000),
+                                         1,datum_GPS/10000,(datum_GPS/100)%100,datum_GPS%100);
                 else
                     mcp7940_set_time(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000));
             }
@@ -274,15 +244,10 @@ int main() {
 }
 
 
-
-
 void on_uart_rx() {
     while (uart_is_readable(UART_ID)) {
-        
 
-
-        uint8_t ch=uart_getc(UART_ID);
-        
+    uint8_t ch=uart_getc(UART_ID);
         
 //la prima frase può arrivare corrotta, iniziando da carattere diverso da $
 //finché non ricevo il primo terminatore \r\n scarto tutti i caratteri. solo dalla seconda considero i dati ok.
@@ -339,9 +304,3 @@ void on_uart_rx() {
 }
 
 
-
-void gpio_callback(uint gpio, uint32_t events) {
-
-    asm("nop");
-
-}

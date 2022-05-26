@@ -1,3 +1,40 @@
+/*
+* FILENAME  :                      mcp7940.c             
+* PROJECT   :   PSE_2021_2022_SERVER_NTP_LAN
+* FOLDER    :          /FW/TEST_RTC_GPS/src/
+*
+* DESCRIPTION :
+*       Il file include la definizione delle funzioni utili
+*       per l'utilizzo dell'integrato MCP7940.
+*
+* PUBLIC FUNCTIONS :
+*       uint8_t     mcp7940_get_all_data
+*       uint32_t    mcp7940_get_time
+*       uint32_t    mcp7940_get_data
+*       void        mcp7940_set_all_data
+*       void        mcp7940_set_time
+*       uint8_t     mcp7940_set_allarm
+*       uint8_t     mcp7940_write_single_register
+*       uint8_t     mcp7940_write_multiple_registers
+*       void        mcp7940_start_count
+*       uint8_t     mcp7940_add_hour_format
+*       uint8_t     num_to_BCD
+*       uint8_t     BCD_to_num
+*       char*       getDayName
+*       
+* NOTES :
+*       Vedi mcp7940.h
+*
+* AUTHORS :    
+*       PAGANIN ANDREA, PASQUINI GIUSEPPE, TRENTI ELIA, TITTON GIULIA, AMORTH MATTEO;
+*
+* CHANGES :
+*
+* REF NO  VERSION DATE    WHO     DETAIL
+* F26/05  A.00.01 26May22 M. A.   Aggiunta intestazione
+*
+*/
+
 #include "mcp7940.h"
 #include <hardware/i2c.h>
 
