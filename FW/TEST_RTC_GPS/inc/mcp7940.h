@@ -48,6 +48,9 @@
 #define MCP7940_ALM0_EN 0x10
 #define MCP7940_ALM1_EN 0x20
 
+//
+#define MCP7940_ENABLE 1
+
 
 //SERVONO I REGISTRI DA 0x00 A 0x06
 /*
@@ -60,15 +63,23 @@
 06
 */
 
-#define START_MILLENNIUM 2
+#define START_MILLENNIUM 2000
 
 uint8_t mcp7940_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_bytes);
 
 uint8_t mcp7940_write_single_register(uint8_t reg_address, uint8_t valueBCD);
 uint8_t mcp7940_write_multiple_registers(uint8_t base_reg_address, uint8_t* buf, uint8_t nregs);
 uint8_t mcp7940_add_hour_format(bool bool12Hours,uint8_t valueBCD);
+void mcp7940_start_count(uint8_t secondsBCD);
 uint8_t num_to_BCD(uint8_t value, uint8_t unitBits);
 uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits);
 uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits);
+void mcp7940_set_all_data(uint8_t secs, uint8_t min, uint8_t hour, uint8_t day, uint8_t date, uint8_t _month, uint8_t _year);
+void mcp7940_set_time(uint8_t secs, uint8_t min, uint8_t hour)
+
+const char* getDayName(uint8_t day);
+uint8_t mcp7940_get_time(uint8_t* buf);
+uint8_t mcp7940_get_data(uint8_t* buf)
+
 //__MCP7940_H__
 #endif 

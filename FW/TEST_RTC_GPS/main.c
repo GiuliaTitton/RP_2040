@@ -1,7 +1,7 @@
 /**
- * Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
- *THIS CODE COMES FROM "EXAMPLES" FOLDER. ONLY ADDED stdio and printf
- * SPDX-License-Identifier: BSD-3-Clause
+ * 
+ *
+ * 
  */
 
 #include "pico/stdlib.h"
@@ -12,39 +12,22 @@
 #include "hardware/irq.h"
 
 
-/// \tag::uart_advanced[]
 
-#define UART_ID uart0
-#define BAUD_RATE 9600
-#define DATA_BITS 8
-#define STOP_BITS 1
-#define PARITY    UART_PARITY_NONE
-// We are using pins 0 and 1, but see the GPIO function select table in the
-// datasheet for information on which other pins can be used.
-#define UART_TX_PIN 0
-#define UART_RX_PIN 1
-
-
+//rtc constant
+#define ONE_SECOND   1000000
+#define TEN_SECONDS 10000000
 
 
 //user inclusions
 
 #include "mcp7940.h"
+#include "pam7q.h"
 #include <string.h>
 
-
-//ascci to integer
-uint8_t ascii_to_int(uint8_t giannimorandi);
-
-//user declarations
-
 //static int chars_rxed = 0;
-void on_uart_rx();
 
-//NMEA constants
-#define MESSAGE_OFFSET_TIME 7
-#define COMMAS_BEFORE_DATUM 9
-#define MAX_NMEA_LEN 82
+
+
 
 static bool valid_sntnc=false;
 static bool end_sentence=false;
@@ -57,38 +40,29 @@ uint8_t nmea_field =0;
 uint32_t time_GPS;
 uint32_t datum_GPS;
 uint8_t index_data_gps;
-
-
-
-
+uint8_t time_RTC;
+uint8_t datum_RTC;
 
 int main() {
 /*************************************/
 /*GPIO*/
-
-
     const uint LED_PIN = PICO_DEFAULT_LED_PIN;
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
     gpio_put(LED_PIN, 0);  //led off
-
-
-
-
 /*************************************/
+
+
 /*PPS IRQ*/
     void gpio_callback(uint gpio, uint32_t events); //callback  declaration
 
     gpio_set_irq_enabled_with_callback(2, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
-
-
-
-
 /***********************************/
+#if GPS_ENABLED
     /*UART*/
 
     // Set up our UART with a basic baud rate.
-    uart_init(UART_ID, 9600);
+    uart_init(UART_ID, BAUD_RATE);
 
     // Set the TX and RX pins by using the function select on the GPIO
     // Set datasheet for more information on function select
@@ -121,12 +95,22 @@ int main() {
     // Now enable the UART to send interrupts - RX only
     uart_set_irq_enables(UART_ID, true, false);
 
+
+#endif
 /*/////////////////////////////////////*/
 
     stdio_init_all();
 
-
+/*****************************************************/
+    //led lightning
+    for(uint8_t i=0; i<4;i++){
+        gpio_put(LED_PIN, 1);  //led on
+        sleep_ms(10);
+        gpio_put(LED_PIN, 0);  //led off
+        sleep_ms(90);       
+    } 
 /*************************************/
+#if MCP7940_ENABLE
 /*I2C INIT*/
 
     i2c_init(i2c0, 10 * 1000);
@@ -135,157 +119,103 @@ int main() {
   //  gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
   //  gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
 
-/*****************************************************/
-
-    for(uint8_t i=0; i<4;i++){
-        gpio_put(LED_PIN, 1);  //led on
-        sleep_ms(10);
-        gpio_put(LED_PIN, 0);  //led off
-        sleep_ms(90);       
-    } 
-
-    
-
 /***************************************/
-/*pcf init*/
-
-
-
+/*mcp init*/
     uint8_t mcp_data_buf[MCP7940_DATA_NBYTES];
-    uint8_t _second, _minute, _hour, _day, _weekday, _month, _year; //, _century; 
+    uint8_t _second, _minute, _hour, _day, _weekday, _month, _year;  
     uint16_t current_year;
-    enum wd {SUN=0, MON, TUE, WED, THU, FRI, SAT} today;  
-    
+
+    uint64_t timestamp_RTC = time_us_64();
+    mcp7940_set_all_data(15, 3, 20, 2, 24, 7, 21);
+#endif   
     bool led_val=0;
 
-    uint64_t my_timestamp= time_us_64();
-    uint64_t led_dbg_period=200, led_timestamp;
+    
+    uint64_t led_dbg_period=200;
+    uint64_t led_timestamp = time_us_64();
+    uint64_t timestamp_correction_RTC = time_us_64();
 
-
-    mcp_data_buf[0]= num_to_BCD(10,4); //sec
-    mcp_data_buf[1]= num_to_BCD(43,4);//min
-    mcp_data_buf[2]= num_to_BCD(16,4)&(~(1<<6));//hour + f. 24h
-
-    mcp_data_buf[3]= num_to_BCD(5,4);//day
-    mcp_data_buf[4]= num_to_BCD(3,4);//date
-    mcp_data_buf[5]= num_to_BCD(5,4);//month
-    mcp_data_buf[6]= num_to_BCD(22,4);//year
-
-    //mcp7940_write_multiple_registers(MCP7940_SECS_REG, mcp_data_buf, sizeof(mcp_data_buf));
-
-my_timestamp= time_us_64();
+   
 
 /***************************************************/
-//gps task init
-
 
 
     while (true) {
-
-
-
-/*
         if(led_dbg_period <=  time_us_64()- led_timestamp){ //LED TASK
-            led_timestamp = time_us_64();
-            led_val = !led_val; //toggle led val. ricordare led_val = false -> led ON! 
+                    led_timestamp = time_us_64();
+                    led_val = !led_val; //toggle led val. ricordare led_val = false -> led ON! 
 
-            if(led_val)
-                led_dbg_period = 75*1000; //800 ms led off
-            else led_dbg_period = 925*1000; //200ms on;
+                    if(!led_val)
+                        led_dbg_period = 75*1000; //800 ms led off
+                    else led_dbg_period = 925*1000; //200ms on;
 
-            gpio_put(LED_PIN, led_val);
-            
-        }*/
+                    gpio_put(LED_PIN, led_val);
+                    
+            }
 
-
-
+        //GPS SECTION
+    #if GPS_ENABLED
         if(nmea_rcvd_sntnc){
             nmea_rcvd_sntnc=false;
-            gpio_put(25,1);  
-
-
-///TODO: CHECK CHECKSUM
-//      ESTRARRE ORA UTC
-
-            uint8_t gps_time_buf[11];
-            uint8_t gps_datum_buf[7];
-            //$GPRMC,152606.090,V,,,,,0.00,0.00,070522,,,N*40
-            for(uint8_t j=0; j<10;j++){
-                gps_time_buf[j] = nmea_sntnc[j + MESSAGE_OFFSET_TIME];
-            }gps_time_buf[10]='\0';//terminatore di stringa
-
             printf("Stringa originale: %s", nmea_sntnc);
            
-
-            printf("%f\n", time_GPS);
-
-            time_GPS =  (gps_time_buf[0]-48) * 100000 +
-                        (gps_time_buf[1]-48) * 10000  +
-                        (gps_time_buf[2]-48) * 1000   +
-                        (gps_time_buf[3]-48) * 100    +
-                        (gps_time_buf[4]-48) * 10     +
-                        (gps_time_buf[5]-48)          +//indice 6: punto
-                        (gps_time_buf[7]-48) * 0.1    +
-                        (gps_time_buf[8]-48) * 0.01   +
-                        (gps_time_buf[9]-48) * 0.001  ;
-
-
-            printf("Stringa tempo: %s\n", gps_time_buf);
-            printf("Tempo convertito: %i\n", time_GPS);
-            for(uint8_t j=0; j<6;j++){
-                gps_datum_buf[j] = nmea_sntnc[j+ index_data_gps];
-            }gps_datum_buf[6]='\0';//terminatore di stringa
+            //time acquisition
+            if(nmea_sntnc[MESSAGE_OFFSET_TIME] != ','){
+                printf("Tempo acquisito: %i", time_GPS);
+                time_GPS = getTime(nmea_sntnc[MESSAGE_OFFSET_TIME]);
+                time_GPS_valid = true;
+            }else{
+                printf("Tempo non acquisito!\n");
+                time_GPS_valid = false;
+            }
             
-
-            printf("Stringa data: %s\n", gps_datum_buf);
-
-            datum_GPS = (gps_datum_buf[0]-48) * 100000 +
-                        (gps_datum_buf[1]-48) * 10000  +
-                        (gps_datum_buf[2]-48) * 1000   +
-                        (gps_datum_buf[3]-48) * 100    +
-                        (gps_datum_buf[4]-48) * 10     +
-                        (gps_datum_buf[5]-48)          ;
-            printf("data convertita: %i\n\n-------------------------\n", datum_GPS);
+            //data acquisition
+            if(nmea_sntnc[index_data_gps] != ','){
+                datum_GPS = getTime(nmea_sntnc[index_data_gps]);
+                printf("Data acquisita: %i\n", datum_GPS);
+                data_GPS_valid = true;
+            }else{
+                printf("Data non acquisita!\n");
+                data_GPS_valid = false;
+            }
             
             
         }
+    #endif
 
-
-/*
-        if(1000*1000 == time_us_64()- my_timestamp){ // ogni secondo (10^6 us..)
-            
-            led_val = !led_val; //toggle led value
-
-            my_timestamp = time_us_64();
-            //mcp7940_write_single_register(MCP7940_SECS_REG, 45);
+    #if MCP7940_ENABLE & GPS_ENABLED
+        //RTC SECTION
+        if(ONE_SECOND <= time_us_64() - timestamp_RTC){ // ogni secondo (10^6 us..)
+            timestamp_RTC = time_us_64();
             mcp7940_get_all_data(mcp_data_buf, MCP7940_SECS_REG, MCP7940_DATA_NBYTES);
+            time_RTC = mcp7940_get_time(mcp_data_buf);
+            datum_RTC = mcp7940_get_data(mcp_data_buf[4]);
             
-
-            _second = BCD_to_num(mcp_data_buf[0], 4,3);
-
-            _minute = BCD_to_num(mcp_data_buf[1], 4,3);
-
-            _hour = BCD_to_num(mcp_data_buf[2], 4,3);
-
             _weekday = mcp_data_buf[3]; //in BCD
             _weekday = (_weekday & 0x07);
-            today = _weekday;
-
             _day = BCD_to_num(mcp_data_buf[4], 4, 2);
-
             _month = BCD_to_num(mcp_data_buf[5], 4, 1);     
-
-            
             _year = BCD_to_num(mcp_data_buf[6], 4, 4);
-
             current_year = START_MILLENNIUM  + _year; //100*_century
             
-
-            printf("%i:%i:%i, %S, %i/%i/%i\n", _second, _minute, _hour, today, current_year, _month, _day);
+            printf("Orario: %i:%i:%i\nData: %s %i/%i/%i\n", _hour, _minute, _second, getDayName(_weekday), _day, _month, current_year);
+            
+            
         }
-*/
-        //gpio_put(LED_PIN, led_val);
-        
+
+        //RTC TIME CORRECTION WITH GPS
+        if(TEN_SECONDS <= time_us_64() - timestamp_correction_RTC){
+            timestamp_correction_RTC = time_us_64();
+            
+            if((time_RTC != time_GPS) & time_GPS_valid & data_GPS_valid){
+                if(datum_RTC != datum_GPS)
+                    mcp7940_set_all_data(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000),1,datum_GPS/10000,(datum_GPS/100)%100,datum_GPS%100);
+                else
+                    mcp7940_set_time(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000));
+            }
+
+        }
+    #endif
     }
 
 }
@@ -304,9 +234,7 @@ void on_uart_rx() {
 //la prima frase può arrivare corrotta, iniziando da carattere diverso da $
 //finché non ricevo il primo terminatore \r\n scarto tutti i caratteri. solo dalla seconda considero i dati ok.
         if(!valid_sntnc)
-            gpio_put(25, 0);
             if(ch=='$'){
-                
                 valid_sntnc=true;
                 string_index=0;
                 commasCounter = 0;
@@ -359,5 +287,4 @@ void on_uart_rx() {
 
 void gpio_callback(uint gpio, uint32_t events) {
     asm("nop");
-
 }
