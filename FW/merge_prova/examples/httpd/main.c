@@ -338,8 +338,10 @@ int main() {
                 if(datum_RTC != datum_GPS)
                     mcp7940_set_all_data(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000),
                                          1,datum_GPS/10000,(datum_GPS/100)%100,datum_GPS%100);
-                else
+                else{
                     mcp7940_set_time(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000));
+                    mcp7940_write_single_register(MCP7940_SECS_REG, time_GPS%100 | 0x80); //bug funzione: non parte rtc automaticamente
+                }
             }
         }
     #endif
