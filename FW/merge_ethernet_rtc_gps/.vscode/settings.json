@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "netif.h": "c",
-        "*.tcc": "c",
-        "irq.h": "c"
-    }
-}
