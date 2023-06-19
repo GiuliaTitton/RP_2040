@@ -1,0 +1,21 @@
+{
+    "folders": [
+      {
+        "path": "."
+      }
+    ],
+    "launch": {
+      "version": "0.2.0",
+      "configurations": [
+        {
+          "request": "launch",
+          "name": "merge_rmii_rtc_gps",
+          "program": "${workspaceRoot}/build",
+          "args": [],
+          "env": [],
+          "cwd": "${workspaceRoot}"
+        }
+      ],
+      "compounds": []
+    }
+  }

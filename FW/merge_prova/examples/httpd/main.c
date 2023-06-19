@@ -31,7 +31,7 @@
 *
 * REF NO  VERSION DATE    WHO     DETAIL
 * F26/05  A.00.01 26May22 M. A.   Aggiunte descrizioni funzioni e intestazione
-*
+* F19/06  A.00.02 19Jun23 M. A.   Aggiunto reset LAN per problema connessione
 * */
 
 #include "pico/stdlib.h"
@@ -62,8 +62,8 @@
 #define TEN_SECONDS 10000000
 #define SET_ALLARM         0
 
-
-
+//set reset of PHY 
+#define LAN_NRESET_PIN 13
   
 #include "lwip/apps/httpd.h"
 
@@ -112,15 +112,15 @@ uint64_t my_period=1000*1000, my_timestamp;
 int main() {
 /*************************************/
     /*GPIO*/
-    
+    //led
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
     gpio_put(LED_PIN, 0);  //led off
 	
-	
-	    gpio_init(13);
-    gpio_set_dir(13, GPIO_OUT);
-    gpio_put(13, 1);  //led off
+	//PHY
+	gpio_init(LAN_NRESET_PIN); 
+    gpio_set_dir(LAN_NRESET_PIN, GPIO_OUT); 
+    gpio_put(LAN_NRESET_PIN, 1);  //RESET ALTO
 /*************************************/
 
 #if GPS_ENABLE
@@ -249,6 +249,11 @@ int main() {
 
     // initilize LWIP in NO SYS mode
     lwip_init();
+
+    //LAN reset to set connection
+    gpio_put(LAN_NRESET_PIN,0); 
+    asm("nop");asm("nop");asm("nop"); 
+    gpio_put(LAN_NRESET_PIN,1); 
 
     // initialize the PIO base RMII Ethernet network interface
     netif_rmii_ethernet_init(&netif, &netif_config);
