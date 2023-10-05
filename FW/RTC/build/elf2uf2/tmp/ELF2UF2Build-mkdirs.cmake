@@ -17,3 +17,6 @@ set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
     file(MAKE_DIRECTORY "/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
 endforeach()
+if(cfgdir)
+  file(MAKE_DIRECTORY "/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/build/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
+endif()

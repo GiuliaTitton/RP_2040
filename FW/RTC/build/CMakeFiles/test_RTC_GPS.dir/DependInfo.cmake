@@ -71,7 +71,7 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
-  "../inc"
+  "/Users/matteo/Documents/GitHub/RP_2040/FW/RTC/inc"
   "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/common/pico_stdlib/include"
   "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/hardware_gpio/include"
   "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/common/pico_base/include"
@@ -183,8 +183,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp" "CMakeFiles/test_RTC_GPS.dir/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj" "gcc" "CMakeFiles/test_RTC_GPS.dir/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

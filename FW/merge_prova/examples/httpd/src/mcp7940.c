@@ -186,3 +186,48 @@ uint32_t mcp7940_get_data(uint8_t* buf, uint8_t offset){
             BCD_to_num(buf[(1 + offset)], 4,3) *   100 +
             BCD_to_num(buf[(0 + offset)], 4,3) * 10000 ;
 }
+
+# Descrizione del File mcp7940.c
+
+**Nome del File**: mcp7940.c
+**Progetto**: PSE_2021_2022_SERVER_NTP_LAN
+
+## Descrizione
+Il file `mcp7940.c` contiene le definizioni delle funzioni utilizzate per l'interazione con l'integrato MCP7940, che è utilizzato per gestire l'orologio in tempo reale (RTC) e altre funzionalità temporali nel progetto.
+
+## Funzioni Pubbliche
+Il file include le seguenti funzioni pubbliche:
+
+1. `uint8_t mcp7940_get_all_data(uint8_t* data, uint8_t base_address, uint8_t n_bytes)`: Questa funzione legge i dati dall'integrato MCP7940, a partire dall'indirizzo di base specificato e per il numero di byte specificato. Restituisce 1 in caso di successo e 0 in caso di errore.
+
+2. `uint8_t mcp7940_write_single_register(uint8_t reg_address, uint8_t valueBCD)`: Questa funzione scrive un singolo registro dell'integrato MCP7940 con l'indirizzo e il valore specificati. Restituisce 1 in caso di successo e 0 in caso di errore.
+
+3. `uint8_t mcp7940_write_multiple_registers(uint8_t base_reg_address, uint8_t* buf, uint8_t nregs)`: Questa funzione scrive più registri dell'integrato MCP7940 a partire dall'indirizzo di base specificato. Restituisce 1 in caso di successo e 0 in caso di errore.
+
+4. `void mcp7940_start_count(uint8_t secondsBCD)`: Questa funzione avvia il conteggio del tempo sull'integrato MCP7940 con il valore specificato per i secondi in formato BCD.
+
+5. `uint8_t mcp7940_add_hour_format(bool bool12Hours, uint8_t valueBCD)`: Questa funzione aggiunge un formato orario all'ora specificata in formato BCD. Restituisce il valore aggiornato.
+
+6. `uint8_t num_to_BCD(uint8_t value, uint8_t unitBits)`: Questa funzione converte un numero decimale in formato BCD con il numero di bit specificato.
+
+7. `uint8_t BCD_to_num(uint8_t valueBCD, uint8_t unitBits, uint8_t decBits)`: Questa funzione converte un numero in formato BCD in un numero decimale con il numero di bit specificato.
+
+8. `uint8_t mcp7940_set_allarm(uint8_t allarmNumber, uint8_t allarmMask, uint8_t reg_address, uint8_t valueBCD, bool interruptHighLow)`: Questa funzione imposta un allarme sull'integrato MCP7940, specificando il numero dell'allarme, la maschera dell'allarme, l'indirizzo del registro, il valore in formato BCD e se l'allarme deve generare un interrupt alto o basso. Restituisce 1 in caso di successo e 0 in caso di errore.
+
+9. `void mcp7940_set_all_data(uint8_t secs, uint8_t min, uint8_t hour, uint8_t day, uint8_t date, uint8_t month, uint8_t year)`: Questa funzione imposta tutti i dati dell'orario sull'integrato MCP7940 con i valori specificati.
+
+10. `void mcp7940_set_time(uint8_t secs, uint8_t min, uint8_t hour)`: Questa funzione imposta l'orario sull'integrato MCP7940 con i valori specificati per i secondi, i minuti e le ore.
+
+11. `const char* getDayName(uint8_t day)`: Questa funzione restituisce il nome del giorno corrispondente al valore del giorno specificato.
+
+12. `uint32_t mcp7940_get_time(uint8_t* buf)`: Questa funzione converte i dati dell'orario letti dall'integrato MCP7940 in un valore uint32_t.
+
+13. `uint32_t mcp7940_get_data(uint8_t* buf, uint8_t offset)`: Questa funzione converte i dati della data letti dall'integrato MCP7940 in un valore uint32_t, con un offset specificato.
+
+Queste funzioni sono utilizzate per gestire l'orario in tempo reale e altri aspetti temporali del progetto.
+
+---
+
+Il file `mcp7940.c` contiene le definizioni delle funzioni necessarie per l'interazione con l'integrato MCP7940, che gestisce l'orologio in tempo reale (RTC) e altre funzionalità temporali. Le funzioni pubbliche includono la lettura e la scrittura di dati, la gestione degli allarmi e la conversione tra formati BCD e decimale.
+
+Questo file è essenziale per il corretto funzionamento del sistema di gestione del tempo nel progetto.
