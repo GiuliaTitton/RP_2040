@@ -2,5 +2,8 @@
     "files.associations": {
         "netif.h": "c",
         "*.tcc": "c"
+    },
+    "cmake.buildEnvironment": {
+        "PICO_SDK_PATH": "/Users/matteo/Documents/GitHub/RP_2040/FW/pico-sdk"
     }
 }
