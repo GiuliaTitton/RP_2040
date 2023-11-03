@@ -180,9 +180,9 @@ int main() {
     //led flashing
     for(uint8_t i=0; i<4;i++){
         gpio_put(LED_PIN, 1);  //led on
-        sleep_ms(10);
+        sleep_ms(50);
         gpio_put(LED_PIN, 0);  //led off
-        sleep_ms(90);       
+        sleep_ms(50);       
     } 
 /*************************************/
 
@@ -245,7 +245,7 @@ int main() {
 
     sleep_ms(5000);
     
-    printf("pico rmii ethernet - httpd\n");
+    
 
     // initilize LWIP in NO SYS mode
     lwip_init();
@@ -280,6 +280,13 @@ int main() {
     // this let's core 0 do other things :)
     multicore_launch_core1(netif_rmii_ethernet_loop);
     
+    printf("+------pico rmii ethernet - httpd------+\n");
+    printf("|                                      |\n");
+    printf("|Time RTC: NoTime                      |\n");
+    printf("|Data RTC: NoData                      |\n");
+    printf("|String GPS: buffer                    |\n");
+    printf("+--------------------------------------+\n");
+
     while (1) {
 
         /*
@@ -289,15 +296,18 @@ int main() {
          Using this ubiquitously makes it much easier to find tight loops, 
          but also in the future #ifdef-ed support for lockup debugging might be added
         */
-        tight_loop_contents(); // @elia Capire cos'è !!!
+        tight_loop_contents();
 
 
+        
         led_task();
     //GPS SECTION
     #if GPS_ENABLE
+        
+
         if(nmea_rcvd_sntnc){
             nmea_rcvd_sntnc=false;
-            printf("Stringa originale: %s", nmea_sntnc);
+           printf("\n\n\nStringa originale: %s", nmea_sntnc);
            
             //time acquisition
             if(nmea_sntnc[MESSAGE_OFFSET_TIME] != ','){
@@ -305,7 +315,7 @@ int main() {
                 time_GPS = getTime(nmea_sntnc, MESSAGE_OFFSET_TIME);
                 time_GPS_valid = true;
             }else{
-                printf("Tempo non acquisito!\n");
+                //printf("Tempo non acquisito!\n");
                 time_GPS_valid = false;
             }
             
@@ -315,7 +325,7 @@ int main() {
                 printf("Data acquisita: %i\n", datum_GPS);
                 data_GPS_valid = true;
             }else{
-                printf("Data non acquisita!\n");
+                //printf("Data non acquisita!\n");
                 data_GPS_valid = false;
             }   
         }
@@ -328,18 +338,28 @@ int main() {
             time_RTC = mcp7940_get_time(mcp_data_buf);
             datum_RTC = mcp7940_get_data(mcp_data_buf, 4);
             
-            printf("\nOrario RTC: %i\nData RTC: %s %i\n\n", time_RTC, getDayName(mcp_data_buf[3] & 0x07), datum_RTC);
+            //printf("Orario RTC: %.6i \nData RTC: %.3s %6i", time_RTC, getDayName(mcp_data_buf[3] & 0x07), datum_RTC);
+            
+            printf("\033[3A");
+            printf("\033[K");
+            printf("\033[1A");
+            printf("\033[K");
+            
+            
+            printf("|Orario RTC: %.6i                    |\n",time_RTC);
+            printf("|Data RTC: %.9s %6i               |\n",getDayName(mcp_data_buf[3] & 0x07), datum_RTC);
+            fflush(stdout);
+            printf("\033[3B");
         }
     #endif
 
     //RTC TIME CORRECTION WITH GPS
     #if MCP7940_ENABLE & GPS_ENABLE
         if(TEN_SECONDS <= time_us_64() - timestamp_correction_RTC){
-            printf("Pre-Correzione tempo\n");
             timestamp_correction_RTC = time_us_64();
             
             if((time_RTC != time_GPS) & time_GPS_valid & data_GPS_valid){
-                printf("\n\n\n-----Correzione tempo-----\n\n\n");
+                //printf("\n\n\n-----Correzione tempo-----\n\n\n");
                 if(datum_RTC != datum_GPS)
                     mcp7940_set_all_data(time_GPS%100, (time_GPS/100)%100,(time_GPS/10000),
                                          1,datum_GPS/10000,(datum_GPS/100)%100,datum_GPS%100);
@@ -368,23 +388,25 @@ void led_task(void){
         led_val = !led_val; //toggle led val. ricordare led_val = false -> led ON! 
 
         if(led_val)
-            led_dbg_period = 925*1000; //800 ms led off
+            led_dbg_period = 900*1000; //800 ms led off
         else {
-            led_dbg_period = 75*1000; //200ms on;
+            led_dbg_period = 100*1000; //200ms on;
             
         }
         gpio_put(LED_PIN, led_val);
     }
 }
 void on_uart_rx() {
+    
     while (uart_is_readable(UART_ID)) {
-
+        
     uint8_t ch=uart_getc(UART_ID);
         
 //la prima frase può arrivare corrotta, iniziando da carattere diverso da $
 //finché non ricevo il primo terminatore \r\n scarto tutti i caratteri. solo dalla seconda considero i dati ok.
         if(!valid_sntnc)
          asm("nop");
+         
         if(ch=='$'){
                 
                 valid_sntnc=true;
@@ -400,7 +422,7 @@ void on_uart_rx() {
             if(3==string_index) 
                 if('R'!= nmea_sntnc[string_index]) valid_sntnc=false;
             if(4==string_index)
-                if('M'!= nmea_sntnc[string_index]) valid_sntnc=false; 
+                if('M'!= nmea_sntnc[string_index]) valid_sntnc=false;
             if(5==string_index)
                 if('C'!= nmea_sntnc[string_index]) valid_sntnc=false;
             
@@ -412,25 +434,19 @@ void on_uart_rx() {
             }
             if (',' == nmea_sntnc[string_index]){
                     commasCounter++;
-            }
-            //printf("passo dopo if virgola: %i\n", commasCounter);    
+            }   
 
             if('*'==nmea_sntnc[string_index]){
                 nmea_star_index=string_index;
                 
             }
 
-            //printf("passo prima di controllo fine stringa: %i\n", commasCounter);
             if('\n'==nmea_sntnc[string_index]){
                 nmea_rcvd_sntnc=true;
-                
             }
-            //printf("passo dopo controllo fine stringa: %i\n", commasCounter);
 
             string_index++;
 
         }
-        //printf("interno while %i\n", commasCounter);
     }
-    //printf("interno funz: %i\n\n", commasCounter);
 }

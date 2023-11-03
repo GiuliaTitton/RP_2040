@@ -7,7 +7,8 @@ set (PROJECT_NAME test_RTC_GPS)
 add_executable(${PROJECT_NAME}
     main.c
         src/mcp7940.c
-        src/pam7q.c
+        #src/pam7q.c
+        src/samm8q.c
 )
 
 
